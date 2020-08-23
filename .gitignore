@@ -1,0 +1,21 @@
+#Hidden folder
+.idea
+
+#Build and binary folders
+build
+Builds
+obj
+asset-bundles
+#Dependencies
+node_modules
+#Unity related
+Library
+Temp
+*.log
+remote_config_data
+#C# related
+*.csproj
+*.sln
+*.sln.DotSettings.user
+#Rider related
+Assets/Plugins/Editor/JetBrains
