@@ -1,0 +1,2 @@
+/Users/matias/Documents/kata-unity/movements/kata-movements/obj/Debug/Tests.csprojAssemblyReference.cache
+/Users/matias/Documents/kata-unity/movements/kata-movements/obj/Debug/Tests.csproj.CoreCompileInputs.cache
