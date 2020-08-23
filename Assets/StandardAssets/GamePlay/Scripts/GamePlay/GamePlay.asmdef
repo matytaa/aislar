@@ -1,0 +1,11 @@
+﻿{
+	"name": "GamePlay",
+	"references": [
+		"SimpleInput.Editor",
+		"SimpleInput.Runtime",
+		"UniRx"
+	],
+	"precompiledReferences": [
+		"NSubstitute.dll"
+	]
+}
