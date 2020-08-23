@@ -9,7 +9,8 @@ asset-bundles
 #Dependencies
 node_modules
 #Unity related
-Library
+Library/
+Temp/
 Temp
 *.log
 remote_config_data
