@@ -1,0 +1,20 @@
+{
+    "name": "GamePlay",
+    "references": [
+        "SimpleInput.Editor",
+        "SimpleInput.Runtime",
+        "UniRx",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [
+        "NSubstitute.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
