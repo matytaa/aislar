@@ -15,8 +15,13 @@ namespace Scripts.GamePlay.Vistas
     {
         [SerializeField] int tiempoTotal;
         [SerializeField] TextMeshProUGUI tiempoRestante;
-        public event Action OnVistaHabilitada = () => { };
+        [SerializeField] Animator animator;
+
+        static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         readonly Disposer suscripcion = Disposer.Create();
+
+        public event Action OnVistaHabilitada = () => { };
+        public event Action OnTimerFinaliza = () => { };
 
         void Awake()
         {
@@ -36,8 +41,14 @@ namespace Scripts.GamePlay.Vistas
         public void IniciarTimer()
         {
             SeconsTimer(tiempoTotal)
+                .DoOnCompleted(() => OnTimerFinaliza())
                 .Subscribe(ActualizacionDelTimer)
                 .AddTo(suscripcion);
+        }
+
+        public void MostrarGameOver()
+        {
+            animator.SetTrigger(gameOverTrigger);
         }
 
         void ActualizacionDelTimer(int segundosRestantes)

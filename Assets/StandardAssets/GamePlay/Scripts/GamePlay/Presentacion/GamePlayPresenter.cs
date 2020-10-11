@@ -9,11 +9,17 @@
             this.vista = vista;
 
             this.vista.OnVistaHabilitada += IniciarTimer;
+            this.vista.OnTimerFinaliza += MostrarGameOver;
         }
 
         private void IniciarTimer()
         {
             vista.IniciarTimer();
+        }
+        
+        private void MostrarGameOver()
+        {
+            vista.MostrarGameOver();
         }
     }
 }
