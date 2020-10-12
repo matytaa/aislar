@@ -13,6 +13,7 @@ namespace Scripts.GamePlay.Vistas.Personas
     {
         [SerializeField] float velocidad;
         [SerializeField] Button botonDarTemperatura;
+        [SerializeField] Button botonAislar;
         [SerializeField] GameObject panelTemperatura;
 
         public event Action OnVistaHabilitada = () => { };
@@ -25,6 +26,7 @@ namespace Scripts.GamePlay.Vistas.Personas
             PersonasProveedor.Para(this);
             botonDarTemperatura.onClick.AddListener(() => OnDarTemperatura());
             panelTemperatura.SetActive(false);
+            botonAislar.gameObject.SetActive(false);
         }
 
         void OnEnable()
@@ -34,16 +36,19 @@ namespace Scripts.GamePlay.Vistas.Personas
 
         void OnDisable()
         {
+            botonAislar.gameObject.SetActive(false);
+            panelTemperatura.SetActive(false);
             suscripcion.Dispose();
         }
 
         public void MoverALaPersona()
         {
-            velocidad = velocidad * Time.deltaTime;
+            var delta = 0.02f;
+            var velocidadDeLaPersona = velocidad * delta;
             transform.position = new Vector3(-12, -1.5f, 0);
 
             Observable.EveryUpdate()
-                .Do(_ => transform.Translate(velocidad, 0, 0))
+                .Do(_ => transform.Translate(velocidadDeLaPersona, 0, 0))
                 .Select(_ => transform.position.x)
                 .TakeWhile(posicionX => posicionX < 12)
                 .Subscribe()
@@ -53,6 +58,11 @@ namespace Scripts.GamePlay.Vistas.Personas
         public void DarTemperatura()
         {
             panelTemperatura.SetActive(true);
+        }
+        
+        public void HabilitarBotonAislar()
+        {
+            botonAislar.gameObject.SetActive(true);
         }
     }
 }

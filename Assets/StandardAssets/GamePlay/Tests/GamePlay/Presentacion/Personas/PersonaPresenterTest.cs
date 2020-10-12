@@ -34,5 +34,13 @@ namespace Tests.Presentacion.Personas
 
             vista.Received(1).DarTemperatura();
         }
+        
+        [Test]
+        public void habilitar_boton_aislar()
+        {
+            vista.OnDarTemperatura += Raise.Event<Action>();
+
+            vista.Received(1).HabilitarBotonAislar();
+        }
     }
 }

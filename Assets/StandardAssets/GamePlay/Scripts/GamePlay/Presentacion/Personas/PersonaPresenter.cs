@@ -8,7 +8,7 @@
             this.vista = vista;
 
             this.vista.OnVistaHabilitada += MoverALaPersona;
-            this.vista.OnDarTemperatura += DarTemperatura;
+            this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
         }
 
         void MoverALaPersona()
@@ -16,8 +16,9 @@
             vista.MoverALaPersona();
         }
         
-        void DarTemperatura()
+        void HabilitarBotonAislarYDarTemperatura()
         {
+            vista.HabilitarBotonAislar();
             vista.DarTemperatura();
         }
     }
