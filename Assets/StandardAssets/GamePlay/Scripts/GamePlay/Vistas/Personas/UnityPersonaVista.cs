@@ -13,6 +13,7 @@ namespace Scripts.GamePlay.Vistas.Personas
     {
         [SerializeField] float velocidad;
         [SerializeField] Button botonDarTemperatura;
+        [SerializeField] GameObject panelTemperatura;
 
         public event Action OnVistaHabilitada = () => { };
         public event Action OnDarTemperatura = () => { };
@@ -23,6 +24,7 @@ namespace Scripts.GamePlay.Vistas.Personas
         {
             PersonasProveedor.Para(this);
             botonDarTemperatura.onClick.AddListener(() => OnDarTemperatura());
+            panelTemperatura.SetActive(false);
         }
 
         void OnEnable()
@@ -50,7 +52,7 @@ namespace Scripts.GamePlay.Vistas.Personas
 
         public void DarTemperatura()
         {
-            UnityEngine.Debug.Log("TEMPERATURA");
+            panelTemperatura.SetActive(true);
         }
     }
 }
