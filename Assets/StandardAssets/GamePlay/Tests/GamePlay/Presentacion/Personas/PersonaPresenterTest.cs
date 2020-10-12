@@ -26,5 +26,13 @@ namespace Tests.Presentacion.Personas
 
             vista.Received(1).MoverALaPersona();
         }
+
+        [Test]
+        public void dar_temperatura()
+        {
+            vista.OnDarTemperatura += Raise.Event<Action>();
+
+            vista.Received(1).DarTemperatura();
+        }
     }
 }

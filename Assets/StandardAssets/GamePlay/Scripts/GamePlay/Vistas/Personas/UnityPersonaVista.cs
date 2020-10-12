@@ -1,27 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 using UniRx;
-using System.Globalization;
 using Scripts.GamePlay.Presentacion;
 using Scripts.GamePlay.Proveedor;
 using Scripts.GamePlay.Utils;
-using System.Collections.Specialized;
-using System.Security.Cryptography;
+using System.Diagnostics;
 
 namespace Scripts.GamePlay.Vistas.Personas
 {
     public class UnityPersonaVista : MonoBehaviour, PersonaVista
     {
         [SerializeField] float velocidad;
+        [SerializeField] Button botonDarTemperatura;
+
         public event Action OnVistaHabilitada = () => { };
+        public event Action OnDarTemperatura = () => { };
 
         readonly Disposer suscripcion = Disposer.Create();
 
         void Awake()
         {
             PersonasProveedor.Para(this);
+            botonDarTemperatura.onClick.AddListener(() => OnDarTemperatura());
         }
 
         void OnEnable()
@@ -45,6 +46,11 @@ namespace Scripts.GamePlay.Vistas.Personas
                 .TakeWhile(posicionX => posicionX < 12)
                 .Subscribe()
                 .AddTo(suscripcion);
+        }
+
+        public void DarTemperatura()
+        {
+            UnityEngine.Debug.Log("TEMPERATURA");
         }
     }
 }
