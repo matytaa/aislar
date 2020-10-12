@@ -18,6 +18,7 @@ namespace Scripts.GamePlay.Vistas.Personas
 
         public event Action OnVistaHabilitada = () => { };
         public event Action OnDarTemperatura = () => { };
+        public event Action OnBotonAislarClikeado = () => { };
 
         readonly Disposer suscripcion = Disposer.Create();
 
@@ -25,6 +26,7 @@ namespace Scripts.GamePlay.Vistas.Personas
         {
             PersonasProveedor.Para(this);
             botonDarTemperatura.onClick.AddListener(() => OnDarTemperatura());
+            botonAislar.onClick.AddListener(() => OnBotonAislarClikeado());
             panelTemperatura.SetActive(false);
             botonAislar.gameObject.SetActive(false);
         }
@@ -36,8 +38,7 @@ namespace Scripts.GamePlay.Vistas.Personas
 
         void OnDisable()
         {
-            botonAislar.gameObject.SetActive(false);
-            panelTemperatura.SetActive(false);
+            ApagarContenedoPersona();
             suscripcion.Dispose();
         }
 
@@ -63,6 +64,14 @@ namespace Scripts.GamePlay.Vistas.Personas
         public void HabilitarBotonAislar()
         {
             botonAislar.gameObject.SetActive(true);
+        }
+        
+        public void ApagarContenedoPersona()
+        {
+            botonAislar.gameObject.SetActive(false);
+            panelTemperatura.SetActive(false);
+            suscripcion.Dispose();
+            gameObject.SetActive(false);
         }
     }
 }

@@ -42,5 +42,13 @@ namespace Tests.Presentacion.Personas
 
             vista.Received(1).HabilitarBotonAislar();
         }
+        
+        [Test]
+        public void al_hacer_click_en_boton_aislar()
+        {
+            vista.OnBotonAislarClikeado += Raise.Event<Action>();
+
+            vista.Received(1).ApagarContenedoPersona();
+        }
     }
 }

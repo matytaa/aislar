@@ -9,6 +9,7 @@
 
             this.vista.OnVistaHabilitada += MoverALaPersona;
             this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
+            this.vista.OnBotonAislarClikeado += ApagarContenedoPersona;
         }
 
         void MoverALaPersona()
@@ -20,6 +21,11 @@
         {
             vista.HabilitarBotonAislar();
             vista.DarTemperatura();
+        }      
+        
+        void ApagarContenedoPersona()
+        {
+            vista.ApagarContenedoPersona();
         }
     }
 }
