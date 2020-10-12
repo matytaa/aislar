@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7fd07f7ff91d984b882a0353cc77d87, type: 3}
-  m_Name: Configuracion De Persona
+  m_Name: Persona3
   m_EditorClassIdentifier: 
-  temperatura: 37.5
-  tieneCovid: 0
+  temperatura: 38
+  tieneCovid: 1

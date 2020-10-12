@@ -3,16 +3,16 @@ namespace Scripts.GamePlay.Infraestructura
 {
     public class RepositorioConfiguracion
     {
-        private ConfiguracionDePersona configuracion;
+        private ConfiguracionGeneral configuracion;
         
-        public RepositorioConfiguracion(ConfiguracionDePersona configuracion)
+        public RepositorioConfiguracion(ConfiguracionGeneral configuracion)
         {
             this.configuracion = configuracion;
         }
 
         public ConfiguracionDePersona DarConfiguracion()
         {
-            return configuracion;
+            return null;
         }
     }
 }

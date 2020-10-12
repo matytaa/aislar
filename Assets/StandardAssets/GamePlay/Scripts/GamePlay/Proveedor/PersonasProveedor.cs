@@ -16,7 +16,7 @@ namespace Scripts.GamePlay.Proveedor
             new PersonaPresenter(vista, DarPersona());
         }
 
-        public static void CargarConfiguracion(ConfiguracionDePersona configuracion)
+        public static void CargarConfiguracion(ConfiguracionGeneral configuracion)
         {
             repositorioConfiguracion = new RepositorioConfiguracion(configuracion);
         }
