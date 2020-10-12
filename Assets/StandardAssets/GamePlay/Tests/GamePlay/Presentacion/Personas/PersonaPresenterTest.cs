@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using Scripts.GamePlay.Presentacion;
 using System;
+using Scripts.GamePlay.Dominio;
 
 namespace Tests.Presentacion.Personas
 {
@@ -11,12 +12,15 @@ namespace Tests.Presentacion.Personas
     {
         PersonaVista vista;
         PersonaPresenter presenter;
+        Persona persona;
+        const float temperatura = 35.9f;
 
         [SetUp]
         public void setup()
         {
+            persona = new Persona(temperatura, false);
             vista = Substitute.For<PersonaVista>();
-            presenter = new PersonaPresenter(vista);
+            presenter = new PersonaPresenter(vista, persona);
         }
 
         [Test]
@@ -32,7 +36,7 @@ namespace Tests.Presentacion.Personas
         {
             vista.OnDarTemperatura += Raise.Event<Action>();
 
-            vista.Received(1).DarTemperatura();
+            vista.Received(1).DarTemperatura(temperatura);
         }
         
         [Test]

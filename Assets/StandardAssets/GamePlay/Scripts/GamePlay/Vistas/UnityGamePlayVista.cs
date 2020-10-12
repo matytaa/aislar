@@ -16,6 +16,7 @@ namespace Scripts.GamePlay.Vistas
         [SerializeField] int tiempoTotal;
         [SerializeField] TextMeshProUGUI tiempoRestante;
         [SerializeField] Animator animator;
+        [SerializeField] ConfiguracionDePersona configuracion;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         readonly Disposer suscripcion = Disposer.Create();
@@ -25,7 +26,7 @@ namespace Scripts.GamePlay.Vistas
 
         void Awake()
         {
-            GamePlayProveedor.Para(this);
+            GamePlayProveedor.Para(this, configuracion);
         }
         
         void OnEnable()

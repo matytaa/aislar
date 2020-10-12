@@ -7,9 +7,10 @@ namespace Scripts.GamePlay.Proveedor
 {
     public static class GamePlayProveedor 
     {
-        public static void Para(GamePlayView vista)
+        public static void Para(GamePlayView vista, ConfiguracionDePersona configuracion)
         {
             new GamePlayPresenter(vista);
+            PersonasProveedor.CargarConfiguracion(configuracion);
         }
     }
 }

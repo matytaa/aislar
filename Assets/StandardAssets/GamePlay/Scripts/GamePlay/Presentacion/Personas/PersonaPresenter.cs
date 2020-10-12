@@ -1,11 +1,16 @@
-﻿namespace Scripts.GamePlay.Presentacion
+﻿using Scripts.GamePlay.Dominio;
+
+namespace Scripts.GamePlay.Presentacion
 { 
     public class PersonaPresenter
     {
         readonly PersonaVista vista;
-        public PersonaPresenter(PersonaVista vista)
+        readonly Persona persona;
+
+        public PersonaPresenter(PersonaVista vista, Persona persona)
         {
             this.vista = vista;
+            this.persona = persona;
 
             this.vista.OnVistaHabilitada += MoverALaPersona;
             this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
@@ -20,7 +25,7 @@
         void HabilitarBotonAislarYDarTemperatura()
         {
             vista.HabilitarBotonAislar();
-            vista.DarTemperatura();
+            vista.DarTemperatura(persona.Temperatura());
         }      
         
         void ApagarContenedoPersona()

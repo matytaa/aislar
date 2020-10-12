@@ -6,6 +6,7 @@ using Scripts.GamePlay.Presentacion;
 using Scripts.GamePlay.Proveedor;
 using Scripts.GamePlay.Utils;
 using System.Diagnostics;
+using TMPro;
 
 namespace Scripts.GamePlay.Vistas.Personas
 {
@@ -15,6 +16,7 @@ namespace Scripts.GamePlay.Vistas.Personas
         [SerializeField] Button botonDarTemperatura;
         [SerializeField] Button botonAislar;
         [SerializeField] GameObject panelTemperatura;
+        [SerializeField] TextMeshProUGUI temperatura;
 
         public event Action OnVistaHabilitada = () => { };
         public event Action OnDarTemperatura = () => { };
@@ -56,8 +58,9 @@ namespace Scripts.GamePlay.Vistas.Personas
                 .AddTo(suscripcion);
         }
 
-        public void DarTemperatura()
+        public void DarTemperatura(float temperaturaDeLaPersona)
         {
+            temperatura.text = "" + temperaturaDeLaPersona;
             panelTemperatura.SetActive(true);
         }
         
