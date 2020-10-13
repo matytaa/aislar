@@ -8,6 +8,7 @@ using System.Globalization;
 using Scripts.GamePlay.Presentacion;
 using Scripts.GamePlay.Proveedor;
 using Scripts.GamePlay.Utils;
+using Scripts.GamePlay.Vistas.Personas;
 
 namespace Scripts.GamePlay.Vistas
 { 
@@ -17,6 +18,8 @@ namespace Scripts.GamePlay.Vistas
         [SerializeField] TextMeshProUGUI tiempoRestante;
         [SerializeField] Animator animator;
         [SerializeField] ConfiguracionGeneral configuracion;
+        [SerializeField] UnityPersonaVista prefabPersona;
+        [SerializeField] Transform contenedorDeLasPersonas;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         readonly Disposer suscripcion = Disposer.Create();
@@ -27,11 +30,22 @@ namespace Scripts.GamePlay.Vistas
         void Awake()
         {
             GamePlayProveedor.Para(this, configuracion);
+            InstanciarPersona();
         }
         
         void OnEnable()
         {
             OnVistaHabilitada();
+        }  
+        
+        void InstanciarPersona()
+        {
+            Observable
+                .Interval(TimeSpan.FromSeconds(1))
+                .Zip(configuracion.DarConfiguracionesDePersona().ToObservable(), (elInterval, lista)=> lista)
+                .Do(_ => Instantiate(prefabPersona, contenedorDeLasPersonas))
+                .Subscribe()
+                .AddTo(suscripcion);
         }      
         
         void OnDisable()
