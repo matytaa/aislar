@@ -7,10 +7,12 @@ namespace Scripts.GamePlay.Proveedor
 {
     public static class GamePlayProveedor 
     {
-        public static void Para(GamePlayView vista, ConfiguracionGeneral configuracion)
+        public static void AsignarPresenterYSetearConfiguracion(GamePlayView vista, 
+            ConfiguracionGeneral configuracion,
+            BarraDeProgresoVista barraDeProgreso)
         {
             new GamePlayPresenter(vista);
-            PersonasProveedor.CargarConfiguracion(configuracion);
+            PersonasProveedor.CargarConfiguracion(configuracion, barraDeProgreso);
         }
     }
 }

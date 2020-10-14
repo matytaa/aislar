@@ -20,6 +20,7 @@ namespace Scripts.GamePlay.Vistas
         [SerializeField] ConfiguracionGeneral configuracion;
         [SerializeField] UnityPersonaVista prefabPersona;
         [SerializeField] Transform contenedorDeLasPersonas;
+        [SerializeField] UnityBarraDeProgresoVista barraDeProgreso;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         readonly Disposer suscripcion = Disposer.Create();
@@ -29,7 +30,7 @@ namespace Scripts.GamePlay.Vistas
 
         void Awake()
         {
-            GamePlayProveedor.Para(this, configuracion);
+            GamePlayProveedor.AsignarPresenterYSetearConfiguracion(this, configuracion, barraDeProgreso);
             InstanciarPersona();
         }
         

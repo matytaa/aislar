@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-
+using Scripts.GamePlay.Presentacion;
 
 namespace Scripts.GamePlay.Vistas
 { 
-    public class UnityBarraDeProgresoVista : MonoBehaviour
+    public class UnityBarraDeProgresoVista : MonoBehaviour, BarraDeProgresoVista
     {
         [SerializeField] Slider barraDeProgreso;
         [SerializeField] Gradient gradiente;
@@ -20,13 +20,7 @@ namespace Scripts.GamePlay.Vistas
             colorDeLaBarra.color = gradiente.Evaluate(1f);
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-                DescontarEnLaBarraDeProgreso();
-        }
-
-        void DescontarEnLaBarraDeProgreso()
+        public void DescontarEnLaBarraDeProgreso()
         {
             barraDeProgreso.value -= 1;
             colorDeLaBarra.color = gradiente.Evaluate(barraDeProgreso.normalizedValue);

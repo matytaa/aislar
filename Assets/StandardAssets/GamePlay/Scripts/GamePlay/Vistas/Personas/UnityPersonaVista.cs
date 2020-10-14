@@ -55,6 +55,7 @@ namespace Scripts.GamePlay.Vistas.Personas
                 .Do(_ => transform.Translate(velocidadDeLaPersona, 0, 0))
                 .Select(_ => transform.position.x)
                 .TakeWhile(posicionX => posicionX < 12)
+                .DoOnCompleted(() => OnRecorridoTerminado())
                 .Subscribe()
                 .AddTo(suscripcion);
         }

@@ -828,6 +828,7 @@ MonoBehaviour:
   prefabPersona: {fileID: 1824119802930530880, guid: 4f85aa5f9ccaec841b30ba6bb0d0fd4b,
     type: 3}
   contenedorDeLasPersonas: {fileID: 3407275617379968080}
+  barraDeProgreso: {fileID: 1017241976}
 --- !u!1 &3407275617255377480
 GameObject:
   m_ObjectHideFlags: 0

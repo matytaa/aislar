@@ -15,18 +15,25 @@ namespace Scripts.GamePlay.Proveedor
 
         public static void Para(PersonaVista vista)
         {
-            new PersonaPresenter(vista, DarPersona(), intermediario);
+            new PersonaPresenter(vista, DarPersona(), DarIntermediario());
         }
 
-        public static void CargarConfiguracion(ConfiguracionGeneral configuracion)
+        public static void CargarConfiguracion(ConfiguracionGeneral configuracion,
+            BarraDeProgresoVista barraDeProgreso)
         {
             repositorioConfiguracion = new RepositorioConfiguracion(configuracion);
+            intermediario = new IntermediarioConLaBarraDeProgreso(barraDeProgreso);
         }
 
         public static Persona DarPersona()
         {
             var configuracion = repositorioConfiguracion.DarConfiguracion();
             return new Persona(configuracion.temperatura, configuracion.tieneCovid);
+        }
+        
+        static IntermediarioConLaBarraDeProgreso DarIntermediario()
+        {
+            return intermediario;
         }
     }
 }
