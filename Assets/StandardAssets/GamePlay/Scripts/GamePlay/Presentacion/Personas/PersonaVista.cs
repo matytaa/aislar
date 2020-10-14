@@ -7,6 +7,7 @@ namespace Scripts.GamePlay.Presentacion
         event Action OnVistaHabilitada;
         event Action OnDarTemperatura;
         event Action OnBotonAislarClikeado;
+        event Action OnRecorridoTerminado;
         void MoverALaPersona();
         void DarTemperatura(float temperatura);
         void HabilitarBotonAislar();

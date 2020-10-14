@@ -11,9 +11,11 @@ namespace Scripts.GamePlay.Proveedor
     public static class PersonasProveedor
     {
         private static RepositorioConfiguracion repositorioConfiguracion;
+        private static IntermediarioConLaBarraDeProgreso intermediario;
+
         public static void Para(PersonaVista vista)
         {
-            new PersonaPresenter(vista, DarPersona());
+            new PersonaPresenter(vista, DarPersona(), intermediario);
         }
 
         public static void CargarConfiguracion(ConfiguracionGeneral configuracion)

@@ -6,15 +6,20 @@ namespace Scripts.GamePlay.Presentacion
     {
         readonly PersonaVista vista;
         readonly Persona persona;
+        readonly IntermediarioConLaBarraDeProgreso intermediario;
 
-        public PersonaPresenter(PersonaVista vista, Persona persona)
+        public PersonaPresenter(PersonaVista vista, 
+            Persona persona,
+            IntermediarioConLaBarraDeProgreso intermediario)
         {
             this.vista = vista;
             this.persona = persona;
+            this.intermediario = intermediario;
 
             this.vista.OnVistaHabilitada += MoverALaPersona;
             this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
             this.vista.OnBotonAislarClikeado += ApagarContenedoPersona;
+            this.vista.OnRecorridoTerminado += DecrementarBarraSiLoNecesita;
         }
 
         void MoverALaPersona()
@@ -31,6 +36,12 @@ namespace Scripts.GamePlay.Presentacion
         void ApagarContenedoPersona()
         {
             vista.ApagarContenedoPersona();
+        }
+
+        void DecrementarBarraSiLoNecesita()
+        {
+            if(persona.TieneCovid())
+                intermediario.DecrementarBarra();
         }
     }
 }

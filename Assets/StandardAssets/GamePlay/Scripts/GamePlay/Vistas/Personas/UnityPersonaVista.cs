@@ -21,6 +21,7 @@ namespace Scripts.GamePlay.Vistas.Personas
         public event Action OnVistaHabilitada = () => { };
         public event Action OnDarTemperatura = () => { };
         public event Action OnBotonAislarClikeado = () => { };
+        public event Action OnRecorridoTerminado = () => { };
 
         readonly Disposer suscripcion = Disposer.Create();
 

@@ -8,15 +8,22 @@ namespace Scripts.GamePlay.Dominio
         private float temperatura;
         private bool tieneCovid;
 
+        protected Persona(){}
+        
         public Persona(float temperatura, bool tieneCovid)
         {
             this.temperatura = temperatura;
             this.tieneCovid = tieneCovid;
         }
 
-        public float Temperatura()
+        public virtual float Temperatura()
         {
             return this.temperatura;
+        }
+
+        public virtual bool TieneCovid()
+        {
+            return tieneCovid;
         }
     }
 }
