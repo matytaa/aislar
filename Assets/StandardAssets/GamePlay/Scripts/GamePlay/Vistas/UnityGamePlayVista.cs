@@ -41,11 +41,19 @@ namespace Scripts.GamePlay.Vistas
         
         void InstanciarPersona()
         {
-            Observable
-                .Interval(TimeSpan.FromSeconds(1))
-                .Zip(configuracion.DarConfiguracionesDePersona().ToObservable(), (elInterval, lista)=> lista)
-                .Do(_ => Instantiate(prefabPersona, contenedorDeLasPersonas))
-                .Subscribe()
+            var poolDePersonas = new PoolDePersonas(prefabPersona, contenedorDeLasPersonas);
+            Observable.Interval(TimeSpan.FromSeconds(2))
+                .Subscribe(_ =>
+                {
+                    var cuantosObjectosQuieroPrecargadosOsiosos = 10;
+                    UnityPersonaVista persona = null;
+                    poolDePersonas.PreloadAsync(cuantosObjectosQuieroPrecargadosOsiosos, 2)
+                        .Do(__ => persona = poolDePersonas.Rent())
+                        .Do(__ => persona.transform.localScale = new Vector3(1,1,1))
+                        .SelectMany(__ => persona.AccionAsincronicaQueDefineLaVidaDeLaPersona())
+                        .Subscribe(__ => poolDePersonas.Return(persona));
+                }
+                )
                 .AddTo(suscripcion);
         }      
         

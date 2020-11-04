@@ -78,5 +78,12 @@ namespace Scripts.GamePlay.Vistas.Personas
             suscripcion.Dispose();
             gameObject.SetActive(false);
         }
+
+        public IObservable<Unit> AccionAsincronicaQueDefineLaVidaDeLaPersona()
+        {
+            return Observable
+                .Timer(TimeSpan.FromSeconds(7))
+                .AsUnitObservable();
+        }
     }
 }
