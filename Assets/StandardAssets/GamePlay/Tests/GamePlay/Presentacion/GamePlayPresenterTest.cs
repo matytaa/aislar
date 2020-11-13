@@ -34,5 +34,13 @@ namespace Tests.Presentacion
 
             vista.Received(1).MostrarGameOver();
         }
+
+        [Test]
+        public void mostrar_game_over_cuando_la_barra_de_progreso_se_haya_agotado()
+        {
+            vista.OnBarraDeProgresoAgotada += Raise.Event<Action>();
+
+            vista.Received(1).MostrarGameOver();
+        }
     }
 }

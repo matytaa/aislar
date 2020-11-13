@@ -575,6 +575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Play
       objectReference: {fileID: 0}
+    - target: {fileID: 3407275617175736389, guid: b3653f19f139be04e8fe0d487b87c9f9,
+        type: 3}
+      propertyPath: tiempoTotal
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3407275617847512873, guid: b3653f19f139be04e8fe0d487b87c9f9,
         type: 3}
       propertyPath: m_AnchorMin.y

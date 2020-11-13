@@ -9,6 +9,7 @@ using Scripts.GamePlay.Presentacion;
 using Scripts.GamePlay.Proveedor;
 using Scripts.GamePlay.Utils;
 using Scripts.GamePlay.Vistas.Personas;
+using UniRx;
 
 namespace Scripts.GamePlay.Vistas
 { 
@@ -24,14 +25,19 @@ namespace Scripts.GamePlay.Vistas
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         readonly Disposer suscripcion = Disposer.Create();
+        private IObservable<Unit> receptorDeBarraDeProgresoAgotada;
 
         public event Action OnVistaHabilitada = () => { };
         public event Action OnTimerFinaliza = () => { };
+        public event Action OnBarraDeProgresoAgotada = () => { };
 
         void Awake()
         {
             GamePlayProveedor.AsignarPresenterYSetearConfiguracion(this, configuracion, barraDeProgreso);
             InstanciarPersona();
+            receptorDeBarraDeProgresoAgotada = GamePlayProveedor.DarReceptorDeBarraDeProgresoAgotada();
+            receptorDeBarraDeProgresoAgotada.Subscribe(_ => OnBarraDeProgresoAgotada())
+                .AddTo(suscripcion);
         }
         
         void OnEnable()
@@ -42,7 +48,7 @@ namespace Scripts.GamePlay.Vistas
         void InstanciarPersona()
         {
             var poolDePersonas = new PoolDePersonas(prefabPersona, contenedorDeLasPersonas);
-            Observable.Interval(TimeSpan.FromSeconds(2))
+            Observable.Interval(TimeSpan.FromSeconds(1))
                 .Subscribe(_ =>
                 {
                     var cuantosObjectosQuieroPrecargadosOsiosos = 10;

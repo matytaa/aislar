@@ -10,6 +10,7 @@
 
             this.vista.OnVistaHabilitada += IniciarTimer;
             this.vista.OnTimerFinaliza += MostrarGameOver;
+            this.vista.OnBarraDeProgresoAgotada += MostrarGameOver;
         }
 
         private void IniciarTimer()
