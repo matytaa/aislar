@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
+
 namespace Scripts.GamePlay.Dominio
 {
     public class Persona
     {
         private float temperatura;
         private bool tieneCovid;
+        private List<Carril> carriles = new List<Carril>()
+        { Carril.PRIMER_CARRIL, Carril.SEGUNDO_CARRIL,Carril.TERCER_CARRIL,Carril.CUARTO_CARRIL};
 
         protected Persona(){}
         
@@ -24,6 +26,12 @@ namespace Scripts.GamePlay.Dominio
         public virtual bool TieneCovid()
         {
             return tieneCovid;
+        } 
+        
+        public virtual Carril DarCarril()
+        {
+            var random = new Random();
+            return carriles[random.Next(carriles.Count)];
         }
     }
 }

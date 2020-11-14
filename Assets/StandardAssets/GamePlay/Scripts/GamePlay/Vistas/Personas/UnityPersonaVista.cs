@@ -7,6 +7,7 @@ using Scripts.GamePlay.Proveedor;
 using Scripts.GamePlay.Utils;
 using System.Diagnostics;
 using TMPro;
+using Scripts.GamePlay.Dominio;
 
 namespace Scripts.GamePlay.Vistas.Personas
 {
@@ -45,11 +46,11 @@ namespace Scripts.GamePlay.Vistas.Personas
             suscripcion.Dispose();
         }
 
-        public void MoverALaPersona()
+        public void IniciarRecorrido(Carril carril)
         {
             var delta = 0.02f;
             var velocidadDeLaPersona = velocidad * delta;
-            transform.position = new Vector3(-12, -1.5f, 0);
+            transform.position = new Vector3(-12, carril.Valor(), 0);
 
             Observable.EveryUpdate()
                 .Do(_ => transform.Translate(velocidadDeLaPersona, 0, 0))

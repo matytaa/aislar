@@ -16,15 +16,15 @@ namespace Scripts.GamePlay.Presentacion
             this.persona = persona;
             this.intermediario = intermediario;
 
-            this.vista.OnVistaHabilitada += MoverALaPersona;
+            this.vista.OnVistaHabilitada += IniciarRecorrido;
             this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
             this.vista.OnBotonAislarClikeado += ApagarContenedoPersona;
             this.vista.OnRecorridoTerminado += DecrementarBarraSiLoNecesita;
         }
 
-        void MoverALaPersona()
+        void IniciarRecorrido()
         {
-            vista.MoverALaPersona();
+            vista.IniciarRecorrido(persona.DarCarril());
         }
         
         void HabilitarBotonAislarYDarTemperatura()

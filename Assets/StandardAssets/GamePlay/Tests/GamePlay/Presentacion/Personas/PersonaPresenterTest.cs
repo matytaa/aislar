@@ -26,11 +26,11 @@ namespace Tests.Presentacion.Personas
         }
 
         [Test]
-        public void mover_a_la_persona()
+        public void iniciar_recorrido()
         {
             vista.OnVistaHabilitada += Raise.Event<Action>();
 
-            vista.Received(1).MoverALaPersona();
+            vista.Received(1).IniciarRecorrido(Arg.Any<Carril>());
         }
 
         [Test]
