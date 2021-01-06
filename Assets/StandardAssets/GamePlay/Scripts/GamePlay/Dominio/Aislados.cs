@@ -13,7 +13,7 @@
         }
 
         public virtual bool ElCupoEstaCompleto() {
-            return false;
+            return cantidadActualDeAislados > topeDeAislados;
         }
 
         public int CantidadActualDeAislados() {
