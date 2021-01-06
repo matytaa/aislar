@@ -10,9 +10,10 @@ using Scripts.GamePlay.Proveedor;
 using Scripts.GamePlay.Utils;
 using Scripts.GamePlay.Vistas.Personas;
 using UniRx;
+using Scripts.GamePlay.Dominio;
 
 namespace Scripts.GamePlay.Vistas
-{ 
+{
     public class UnityGamePlayVista : MonoBehaviour, GamePlayView
     {
         [SerializeField] int tiempoTotal;
@@ -22,6 +23,7 @@ namespace Scripts.GamePlay.Vistas
         [SerializeField] UnityPersonaVista prefabPersona;
         [SerializeField] Transform contenedorDeLasPersonas;
         [SerializeField] UnityBarraDeProgresoVista barraDeProgreso;
+        [SerializeField] TextMeshProUGUI cantidadDeAislados;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         readonly Disposer suscripcion = Disposer.Create();
@@ -39,12 +41,12 @@ namespace Scripts.GamePlay.Vistas
             receptorDeBarraDeProgresoAgotada.Subscribe(_ => OnBarraDeProgresoAgotada())
                 .AddTo(suscripcion);
         }
-        
+
         void OnEnable()
         {
             OnVistaHabilitada();
-        }  
-        
+        }
+
         void InstanciarPersona()
         {
             var poolDePersonas = new PoolDePersonas(prefabPersona, contenedorDeLasPersonas);
@@ -55,14 +57,14 @@ namespace Scripts.GamePlay.Vistas
                     UnityPersonaVista persona = null;
                     poolDePersonas.PreloadAsync(cuantosObjectosQuieroPrecargadosOsiosos, 2)
                         .Do(__ => persona = poolDePersonas.Rent())
-                        .Do(__ => persona.transform.localScale = new Vector3(1,1,1))
+                        .Do(__ => persona.transform.localScale = new Vector3(1, 1, 1))
                         .SelectMany(__ => persona.AccionAsincronicaQueDefineLaVidaDeLaPersona())
                         .Subscribe(__ => poolDePersonas.Return(persona));
                 }
                 )
                 .AddTo(suscripcion);
-        }      
-        
+        }
+
         void OnDisable()
         {
             suscripcion.Dispose();
@@ -79,6 +81,11 @@ namespace Scripts.GamePlay.Vistas
         public void MostrarGameOver()
         {
             animator.SetTrigger(gameOverTrigger);
+        }
+        
+        public void ActualizarCantidadDeAislados(Aislados aislados)
+        {
+            cantidadDeAislados.text = aislados.CantidadActualDeAislados() + "/" + aislados.TopeDeAislados();
         }
 
         void ActualizacionDelTimer(int segundosRestantes)

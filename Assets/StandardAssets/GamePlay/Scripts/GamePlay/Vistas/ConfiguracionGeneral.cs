@@ -6,9 +6,15 @@ using UnityEngine;
 public class ConfiguracionGeneral : ScriptableObject
 {
     [SerializeField] List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
+    [SerializeField] int topeDeAislados;
 
     public List<ConfiguracionDePersona> DarConfiguracionesDePersona()
     {
         return listaDeConfiguracionDePersonas;
+    }
+
+    public int TopeDeAislados()
+    {
+        return topeDeAislados;
     }
 }

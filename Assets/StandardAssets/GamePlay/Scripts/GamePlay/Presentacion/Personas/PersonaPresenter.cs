@@ -1,4 +1,5 @@
 ﻿using Scripts.GamePlay.Dominio;
+using Scripts.GamePlay.Infraestructura;
 
 namespace Scripts.GamePlay.Presentacion
 { 
@@ -7,18 +8,21 @@ namespace Scripts.GamePlay.Presentacion
         readonly PersonaVista vista;
         readonly Persona persona;
         readonly IntermediarioConLaBarraDeProgreso intermediario;
+        readonly ServicioDeAislados servicio;
 
         public PersonaPresenter(PersonaVista vista, 
             Persona persona,
-            IntermediarioConLaBarraDeProgreso intermediario)
+            IntermediarioConLaBarraDeProgreso intermediario,
+            ServicioDeAislados servicio)
         {
             this.vista = vista;
             this.persona = persona;
             this.intermediario = intermediario;
+            this.servicio = servicio;
 
             this.vista.OnVistaHabilitada += IniciarRecorrido;
             this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
-            this.vista.OnBotonAislarClikeado += ApagarContenedoPersona;
+            this.vista.OnBotonAislarClikeado += OnBotonAislarEsClikeado;
             this.vista.OnRecorridoTerminado += DecrementarBarraSiLoNecesita;
         }
 
@@ -33,9 +37,10 @@ namespace Scripts.GamePlay.Presentacion
             vista.DarTemperatura(persona.Temperatura());
         }      
         
-        void ApagarContenedoPersona()
+        void OnBotonAislarEsClikeado()
         {
             vista.ApagarContenedoPersona();
+            servicio.ActualizarAislados();
         }
 
         void DecrementarBarraSiLoNecesita()

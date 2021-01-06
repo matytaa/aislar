@@ -3,7 +3,9 @@ using NUnit.Framework;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using Scripts.GamePlay.Presentacion;
+using Scripts.GamePlay.Dominio;
 using System;
+using UniRx;
 
 namespace Tests.Presentacion
 {
@@ -11,12 +13,17 @@ namespace Tests.Presentacion
     {
         GamePlayView vista;
         GamePlayPresenter presenter;
+        Subject<Aislados> aisladosSubject;
+        Aislados aislados;
 
         [SetUp]
         public void setup()
         {
             vista = Substitute.For<GamePlayView>();
-            GamePlayPresenter presenter = new GamePlayPresenter(vista);
+            aisladosSubject = new Subject<Aislados>();
+            GamePlayPresenter presenter = new GamePlayPresenter(vista, aisladosSubject);
+
+            aislados = Substitute.For<Aislados>();
         }
 
         [Test]
@@ -41,6 +48,24 @@ namespace Tests.Presentacion
             vista.OnBarraDeProgresoAgotada += Raise.Event<Action>();
 
             vista.Received(1).MostrarGameOver();
+        }
+
+        [Test]
+        public void actualizar_cantidad_de_aislados()
+        {
+            aisladosSubject.OnNext(aislados);
+
+            vista.Received(1).ActualizarCantidadDeAislados(Arg.Is(aislados));
+        }
+        
+        [Test]
+        public void no_actualizar_cantidad_de_aislados_cuando_llenamos_el_cupo()
+        {
+            aislados.ElCupoEstaCompleto().Returns(true);
+
+            aisladosSubject.OnNext(aislados);
+
+            vista.DidNotReceive().ActualizarCantidadDeAislados(Arg.Is(aislados));
         }
     }
 }

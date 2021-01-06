@@ -6,7 +6,7 @@ using Scripts.GamePlay.Presentacion;
 using System;
 using Scripts.GamePlay.Dominio;
 
-namespace Tests.Presentacion.Personas
+namespace Tests.GamePlay.Dominio
 {
     public class IntermediarioConLaBarraDeProgresoTest
     {

@@ -5,6 +5,7 @@ using System.ComponentModel.Design;
 using Scripts.GamePlay.Presentacion;
 using System;
 using Scripts.GamePlay.Dominio;
+using Scripts.GamePlay.Infraestructura;
 
 namespace Tests.Presentacion.Personas
 {
@@ -13,7 +14,8 @@ namespace Tests.Presentacion.Personas
         PersonaVista vista;
         PersonaPresenter presenter;
         Persona persona;
-        IntermediarioConLaBarraDeProgreso intermediario; 
+        IntermediarioConLaBarraDeProgreso intermediario;
+        ServicioDeAislados servicio;
         const float temperatura = 35.9f;
 
         [SetUp]
@@ -22,7 +24,8 @@ namespace Tests.Presentacion.Personas
             persona = Substitute.For<Persona>();
             vista = Substitute.For<PersonaVista>();
             intermediario = Substitute.For<IntermediarioConLaBarraDeProgreso>();
-            presenter = new PersonaPresenter(vista, persona, intermediario);
+            servicio = Substitute.For<ServicioDeAislados>();
+            presenter = new PersonaPresenter(vista, persona, intermediario, servicio);
         }
 
         [Test]
@@ -57,6 +60,7 @@ namespace Tests.Presentacion.Personas
             vista.OnBotonAislarClikeado += Raise.Event<Action>();
 
             vista.Received(1).ApagarContenedoPersona();
+            servicio.Received(1).ActualizarAislados();
         }
         
         [Test]

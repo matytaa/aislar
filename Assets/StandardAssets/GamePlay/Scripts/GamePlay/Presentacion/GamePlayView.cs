@@ -1,4 +1,5 @@
 ﻿using System;
+using Scripts.GamePlay.Dominio;
 
 namespace Scripts.GamePlay.Presentacion
 {
@@ -9,5 +10,6 @@ namespace Scripts.GamePlay.Presentacion
         event Action OnBarraDeProgresoAgotada;
         void IniciarTimer();
         void MostrarGameOver();
+        void ActualizarCantidadDeAislados(Aislados aislados);
     }
 }
