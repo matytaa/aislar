@@ -74,6 +74,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
                 .AddTo(suscripcion);
         }
 
+        public void ConfigurarLimiteDePersonasConCovid(int limiteDePersonasConCovid)
+        {
+            barraDeProgreso.ConfigurarLimiteDePersonasConCovid(limiteDePersonasConCovid);
+        }
+
         public void MostrarGameOver()
         {
             animator.SetTrigger(gameOverTrigger);

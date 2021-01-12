@@ -18,16 +18,27 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
             this.vista = vista;
             this.aislados = aislados;
             this.servicioDeConfiguracion = servicioDeConfiguracion;
-            this.vista.OnVistaHabilitada += IniciarTimer;
+            this.vista.OnVistaHabilitada += ConfigurarNivel;
             this.vista.OnTimerFinaliza += MostrarGameOver;
             this.vista.OnBarraDeProgresoAgotada += MostrarGameOver;
 
             PrepararseParaActualizarLaVista();
         }
 
+        private void ConfigurarNivel()
+        {
+            ConfigurarLimiteDePersonasConCovid();
+            IniciarTimer();
+        }
+
         private void IniciarTimer()
         {
             vista.IniciarTimer(servicioDeConfiguracion.DarTiempoDelNivel());
+        }
+        
+        private void ConfigurarLimiteDePersonasConCovid()
+        {
+            vista.ConfigurarLimiteDePersonasConCovid(servicioDeConfiguracion.DarLimiteDePoblacionConCovid());
         }
         
         private void MostrarGameOver()

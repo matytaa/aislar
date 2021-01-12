@@ -9,6 +9,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
         [SerializeField] int topeDeAislados;
         [SerializeField] int tiempoDelNivel;
+        [SerializeField] int limiteDePoblacionConCovid;
 
         public List<ConfiguracionDePersona> DarConfiguracionesDePersona()
         {
@@ -23,6 +24,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         public virtual int TiempoDelNivel()
         {
             return tiempoDelNivel;
+        }
+        
+        public virtual int LimiteDePoblacionConCovid()
+        {
+            return limiteDePoblacionConCovid;
         }
     }
 }

@@ -45,5 +45,18 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             
             Assert.AreEqual(configuracionDePersona, resultado);
         }
+        
+        
+        [Test]
+        public void dar_limite_de_poblacion_con_covid()
+        {
+            var limiteDePoblacionConCovid = 10;
+            configuracionGeneral.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+
+            var resultado = servicio.DarLimiteDePoblacionConCovid();
+
+            Assert.AreEqual(limiteDePoblacionConCovid, resultado);
+        }
     }
 }

@@ -17,8 +17,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
 
         void Awake()
         {
-            barraDeProgreso.maxValue = 10;
-            barraDeProgreso.value = 10;
             colorDeLaBarra.color = gradiente.Evaluate(1f);
             emisorDeBarraDeProgresoAgotada = GamePlayProveedor.DarEmisorDeBarraDeProgresoAgotada();
         }
@@ -29,6 +27,12 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             colorDeLaBarra.color = gradiente.Evaluate(barraDeProgreso.normalizedValue);
             if (barraDeProgreso.value < 1)
                 emisorDeBarraDeProgresoAgotada.OnNext(Unit.Default);
+        }
+
+        public void ConfigurarLimiteDePersonasConCovid(int limiteDePersonasConCovid)
+        {
+            barraDeProgreso.maxValue = limiteDePersonasConCovid;
+            barraDeProgreso.value = limiteDePersonasConCovid;
         }
     }
 }

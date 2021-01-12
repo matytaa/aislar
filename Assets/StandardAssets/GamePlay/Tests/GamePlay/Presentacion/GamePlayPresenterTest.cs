@@ -16,6 +16,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         ServicioDeConfiguracion servicio;
         Aislados aislados;
         private int tiempoDelNivel = 10;
+        private int limiteDePoblacionConCovid = 10;
 
         [SetUp]
         public void setup()
@@ -36,6 +37,16 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             vista.OnVistaHabilitada += Raise.Event<Action>();
 
             vista.Received(1).IniciarTimer(Arg.Is(tiempoDelNivel));
+        }
+        
+        [Test]
+        public void configurar_limite_de_personas_con_covid()
+        {
+            servicio.DarLimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            
+            vista.OnVistaHabilitada += Raise.Event<Action>();
+
+            vista.Received(1).ConfigurarLimiteDePersonasConCovid(Arg.Is(limiteDePoblacionConCovid));
         }
         
         [Test]

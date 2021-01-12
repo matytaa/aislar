@@ -11,5 +11,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         void IniciarTimer(int tiempoDelNivel);
         void MostrarGameOver();
         void ActualizarCantidadDeAislados(Aislados aislados);
+        void ConfigurarLimiteDePersonasConCovid(int limiteDePersonasConCovid);
     }
 }

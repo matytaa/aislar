@@ -19,3 +19,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 900fb662c6e081547aa019e5d234d2a6, type: 2}
   topeDeAislados: 10
   tiempoDelNivel: 15
+  limiteDePoblacionConCovid: 3
