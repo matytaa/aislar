@@ -8,7 +8,7 @@ namespace Scripts.GamePlay.Presentacion
         event Action OnVistaHabilitada;
         event Action OnTimerFinaliza;
         event Action OnBarraDeProgresoAgotada;
-        void IniciarTimer();
+        void IniciarTimer(int tiempoDelNivel);
         void MostrarGameOver();
         void ActualizarCantidadDeAislados(Aislados aislados);
     }

@@ -70,9 +70,9 @@ namespace Scripts.GamePlay.Vistas
             suscripcion.Dispose();
         }
 
-        public void IniciarTimer()
+        public void IniciarTimer(int tiempoDelNivel)
         {
-            SeconsTimer(tiempoTotal)
+            SeconsTimer(tiempoDelNivel)
                 .DoOnCompleted(() => OnTimerFinaliza())
                 .Subscribe(ActualizacionDelTimer)
                 .AddTo(suscripcion);

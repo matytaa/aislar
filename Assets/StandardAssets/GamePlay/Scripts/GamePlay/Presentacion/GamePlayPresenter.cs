@@ -1,6 +1,7 @@
 ﻿using UniRx;
 using System;
 using Scripts.GamePlay.Dominio;
+using Scripts.GamePlay.Infraestructura;
 
 namespace Scripts.GamePlay.Presentacion
 { 
@@ -8,11 +9,15 @@ namespace Scripts.GamePlay.Presentacion
     {
         readonly GamePlayView vista;
         readonly IObservable<Aislados> aislados;
+        readonly ServicioDeConfiguracion servicioDeConfiguracion;
 
-        public GamePlayPresenter(GamePlayView vista, IObservable<Aislados> aislados)
+        public GamePlayPresenter(GamePlayView vista, 
+            IObservable<Aislados> aislados, 
+            ServicioDeConfiguracion servicioDeConfiguracion)
         {
             this.vista = vista;
             this.aislados = aislados;
+            this.servicioDeConfiguracion = servicioDeConfiguracion;
             this.vista.OnVistaHabilitada += IniciarTimer;
             this.vista.OnTimerFinaliza += MostrarGameOver;
             this.vista.OnBarraDeProgresoAgotada += MostrarGameOver;
@@ -22,7 +27,7 @@ namespace Scripts.GamePlay.Presentacion
 
         private void IniciarTimer()
         {
-            vista.IniciarTimer();
+            vista.IniciarTimer(servicioDeConfiguracion.DarTiempoDelNivel());
         }
         
         private void MostrarGameOver()

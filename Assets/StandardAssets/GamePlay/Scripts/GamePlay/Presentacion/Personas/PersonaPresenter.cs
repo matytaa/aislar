@@ -6,24 +6,29 @@ namespace Scripts.GamePlay.Presentacion
     public class PersonaPresenter
     {
         readonly PersonaVista vista;
-        readonly Persona persona;
+        readonly ObtenerPersonaAction obtenerPersonaAction;
         readonly IntermediarioConLaBarraDeProgreso intermediario;
         readonly ServicioDeAislados servicio;
+        
+        private Persona persona;
 
         public PersonaPresenter(PersonaVista vista, 
-            Persona persona,
+            ObtenerPersonaAction obtenerPersonaAction,
             IntermediarioConLaBarraDeProgreso intermediario,
             ServicioDeAislados servicio)
         {
             this.vista = vista;
-            this.persona = persona;
+            this.obtenerPersonaAction = obtenerPersonaAction;
             this.intermediario = intermediario;
             this.servicio = servicio;
+            
 
             this.vista.OnVistaHabilitada += IniciarRecorrido;
             this.vista.OnDarTemperatura += HabilitarBotonAislarYDarTemperatura;
             this.vista.OnBotonAislarClikeado += OnBotonAislarEsClikeado;
             this.vista.OnRecorridoTerminado += DecrementarBarraSiLoNecesita;
+            
+            persona = this.obtenerPersonaAction.Ejecutar();
         }
 
         void IniciarRecorrido()

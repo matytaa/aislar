@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b4f71d80828d6004b86e6d77d0754c76, type: 2}
   - {fileID: 11400000, guid: 900fb662c6e081547aa019e5d234d2a6, type: 2}
   topeDeAislados: 10
+  tiempoDelNivel: 15

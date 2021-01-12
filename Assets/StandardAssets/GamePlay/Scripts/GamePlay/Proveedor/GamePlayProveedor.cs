@@ -2,6 +2,7 @@
 using UnityEngine;
 using Scripts.GamePlay.Presentacion;
 using Scripts.GamePlay.Dominio;
+using Scripts.GamePlay.Infraestructura;
 using UniRx;
 
 namespace Scripts.GamePlay.Proveedor
@@ -15,8 +16,13 @@ namespace Scripts.GamePlay.Proveedor
             ConfiguracionGeneral configuracion,
             BarraDeProgresoVista barraDeProgreso)
         {
-            new GamePlayPresenter(vista, DarReceptorDeAislados());
             PersonasProveedor.CargarConfiguracion(configuracion, barraDeProgreso);
+            new GamePlayPresenter(vista, DarReceptorDeAislados(), DarServicioDeConfiguracion());
+        }
+
+        public static ServicioDeConfiguracion DarServicioDeConfiguracion()
+        {
+            return new ServicioDeConfiguracion(PersonasProveedor.DarRepositorioConfiguracion());
         }
 
         public static IObserver<Unit> DarEmisorDeBarraDeProgresoAgotada()

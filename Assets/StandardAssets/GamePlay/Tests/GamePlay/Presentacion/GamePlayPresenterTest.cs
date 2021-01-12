@@ -1,10 +1,9 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using System.ComponentModel;
-using System.ComponentModel.Design;
 using Scripts.GamePlay.Presentacion;
 using Scripts.GamePlay.Dominio;
 using System;
+using Scripts.GamePlay.Infraestructura;
 using UniRx;
 
 namespace Tests.Presentacion
@@ -14,14 +13,17 @@ namespace Tests.Presentacion
         GamePlayView vista;
         GamePlayPresenter presenter;
         Subject<Aislados> aisladosSubject;
+        ServicioDeConfiguracion servicio;
         Aislados aislados;
+        private int tiempoDelNivel = 10;
 
         [SetUp]
         public void setup()
         {
             vista = Substitute.For<GamePlayView>();
             aisladosSubject = new Subject<Aislados>();
-            GamePlayPresenter presenter = new GamePlayPresenter(vista, aisladosSubject);
+            servicio = Substitute.For<ServicioDeConfiguracion>();
+            GamePlayPresenter presenter = new GamePlayPresenter(vista, aisladosSubject, servicio);
 
             aislados = Substitute.For<Aislados>();
         }
@@ -29,9 +31,11 @@ namespace Tests.Presentacion
         [Test]
         public void iniciar_tiempo_cuando_se_habilita_la_vista()
         {
+            servicio.DarTiempoDelNivel().Returns(tiempoDelNivel);
+            
             vista.OnVistaHabilitada += Raise.Event<Action>();
 
-            vista.Received(1).IniciarTimer();
+            vista.Received(1).IniciarTimer(Arg.Is(tiempoDelNivel));
         }
         
         [Test]

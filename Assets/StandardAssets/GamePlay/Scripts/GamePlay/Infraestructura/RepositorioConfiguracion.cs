@@ -11,13 +11,15 @@ namespace Scripts.GamePlay.Infraestructura
         private ConfiguracionGeneral configuracion;
         private List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
 
+        protected RepositorioConfiguracion(){}
+        
         public RepositorioConfiguracion(ConfiguracionGeneral configuracion)
         {
             this.configuracion = configuracion;
             ClonarListaDeConfiguracionDePersonas();
         }
 
-        public ConfiguracionDePersona DarConfiguracion()
+        public virtual ConfiguracionDePersona DarConfiguracionDeUnaPersona()
         {
             if(listaDeConfiguracionDePersonas.Count() == 0)
                 ClonarListaDeConfiguracionDePersonas();
@@ -29,6 +31,11 @@ namespace Scripts.GamePlay.Infraestructura
 
         private void ClonarListaDeConfiguracionDePersonas(){
             listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracion.DarConfiguracionesDePersona());
+        }
+
+        public virtual ConfiguracionGeneral DarConfiguracionDelNivel()
+        {
+            return configuracion;
         }
     }
 }
