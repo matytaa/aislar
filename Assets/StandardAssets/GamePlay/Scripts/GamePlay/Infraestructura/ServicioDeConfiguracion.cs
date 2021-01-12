@@ -1,4 +1,6 @@
-namespace Scripts.GamePlay.Infraestructura
+using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
+
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class ServicioDeConfiguracion
     {

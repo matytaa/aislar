@@ -1,12 +1,12 @@
-﻿using NSubstitute;
+﻿using System;
+using NSubstitute;
 using NUnit.Framework;
-using Scripts.GamePlay.Presentacion;
-using Scripts.GamePlay.Dominio;
-using System;
-using Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
 using UniRx;
 
-namespace Tests.Presentacion
+namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
 {
     public class GamePlayPresenterTest
     {

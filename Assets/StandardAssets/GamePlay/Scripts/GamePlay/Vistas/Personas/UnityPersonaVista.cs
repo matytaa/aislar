@@ -1,15 +1,14 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System;
-using UniRx;
-using Scripts.GamePlay.Presentacion;
-using Scripts.GamePlay.Proveedor;
-using Scripts.GamePlay.Utils;
-using System.Diagnostics;
+﻿using System;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion.Personas;
+using StandardAssets.GamePlay.Scripts.GamePlay.Proveedor;
+using StandardAssets.GamePlay.Scripts.GamePlay.Utils;
 using TMPro;
-using Scripts.GamePlay.Dominio;
+using UniRx;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace Scripts.GamePlay.Vistas.Personas
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas.Personas
 {
     public class UnityPersonaVista : MonoBehaviour, PersonaVista
     {

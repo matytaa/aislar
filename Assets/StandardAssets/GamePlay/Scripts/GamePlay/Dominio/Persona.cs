@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Scripts.GamePlay.Dominio
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Dominio
 {
     public class Persona
     {

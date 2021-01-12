@@ -1,4 +1,4 @@
-﻿namespace Scripts.GamePlay.Dominio
+﻿namespace StandardAssets.GamePlay.Scripts.GamePlay.Dominio
 {
     public enum Carril
     {

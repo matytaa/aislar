@@ -1,9 +1,9 @@
-﻿using UniRx;
-using System;
-using Scripts.GamePlay.Dominio;
-using Scripts.GamePlay.Infraestructura;
+﻿using System;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
+using UniRx;
 
-namespace Scripts.GamePlay.Presentacion
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
 { 
     public class GamePlayPresenter
     {

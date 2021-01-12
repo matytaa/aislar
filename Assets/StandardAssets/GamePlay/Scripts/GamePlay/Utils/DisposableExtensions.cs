@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Scripts.GamePlay.Utils
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Utils
 {
     public static class DisposableExtensions
     {

@@ -1,9 +1,10 @@
 using NSubstitute;
 using NUnit.Framework;
-using Scripts.GamePlay.Dominio;
-using Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
 
-namespace Tests.GamePlay.Dominio
+namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
 {
     public class ObtenerPersonaActionTest
     {

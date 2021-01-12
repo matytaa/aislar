@@ -1,7 +1,7 @@
 ﻿using System;
-using Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
 
-namespace Scripts.GamePlay.Presentacion
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion.Personas
 {
     public interface PersonaVista
     {

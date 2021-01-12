@@ -1,11 +1,11 @@
-﻿using NSubstitute;
+﻿using System;
+using NSubstitute;
 using NUnit.Framework;
-using Scripts.GamePlay.Presentacion;
-using System;
-using Scripts.GamePlay.Dominio;
-using Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion.Personas;
 
-namespace Tests.Presentacion.Personas
+namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion.Personas
 {
     public class PersonaPresenterTest
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Scripts.GamePlay.Utils
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Utils
 {
     public class Disposer : IDisposable
     {

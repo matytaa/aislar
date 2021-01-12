@@ -1,7 +1,7 @@
-﻿using NUnit.Framework;
-using NSubstitute;
+﻿using NSubstitute;
+using NUnit.Framework;
 
-namespace Tests
+namespace StandardAssets.GamePlay.Tests.GamePlay
 {
     public class SimpleTest
     {

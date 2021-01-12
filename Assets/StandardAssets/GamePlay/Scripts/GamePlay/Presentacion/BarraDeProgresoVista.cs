@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Scripts.GamePlay.Presentacion
+﻿namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
 {
     public interface BarraDeProgresoVista
     {

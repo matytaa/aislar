@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Scripts.GamePlay.Presentacion;
+﻿using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
 
-namespace Scripts.GamePlay.Dominio
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Dominio
 {
     public class IntermediarioConLaBarraDeProgreso
     {

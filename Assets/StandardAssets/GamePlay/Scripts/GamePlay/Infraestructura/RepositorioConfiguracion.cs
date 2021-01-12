@@ -1,10 +1,8 @@
-﻿using Scripts.GamePlay.Vistas;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections;
-using System.Collections.Generic;
-using System;
+using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
 
-namespace Scripts.GamePlay.Infraestructura
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class RepositorioConfiguracion
     {

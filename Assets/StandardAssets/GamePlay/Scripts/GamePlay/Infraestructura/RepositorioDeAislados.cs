@@ -1,6 +1,6 @@
-﻿using Scripts.GamePlay.Dominio;
+﻿using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
 
-namespace Scripts.GamePlay.Infraestructura
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class RepositorioDeAislados
     {

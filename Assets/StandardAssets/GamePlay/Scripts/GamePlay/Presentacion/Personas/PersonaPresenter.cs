@@ -1,7 +1,7 @@
-﻿using Scripts.GamePlay.Dominio;
-using Scripts.GamePlay.Infraestructura;
+﻿using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
 
-namespace Scripts.GamePlay.Presentacion
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion.Personas
 { 
     public class PersonaPresenter
     {

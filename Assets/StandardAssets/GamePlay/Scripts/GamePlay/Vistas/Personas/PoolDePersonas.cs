@@ -1,8 +1,7 @@
-﻿using UnityEngine;
-using UniRx.Toolkit;
-using Scripts.GamePlay.Vistas.Personas;
+﻿using UniRx.Toolkit;
+using UnityEngine;
 
-namespace Scripts.GamePlay.Vistas.Personas
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas.Personas
 {
     public class PoolDePersonas : ObjectPool<UnityPersonaVista>
     {

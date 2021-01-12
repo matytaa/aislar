@@ -1,11 +1,11 @@
 ﻿using System;
-using UnityEngine;
-using Scripts.GamePlay.Presentacion;
-using Scripts.GamePlay.Dominio;
-using Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
+using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
 using UniRx;
 
-namespace Scripts.GamePlay.Proveedor
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
 {
     public static class GamePlayProveedor 
     {

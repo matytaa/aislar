@@ -1,6 +1,6 @@
-using Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
 
-namespace Scripts.GamePlay.Dominio
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Dominio
 {
     public class ObtenerPersonaAction
     {

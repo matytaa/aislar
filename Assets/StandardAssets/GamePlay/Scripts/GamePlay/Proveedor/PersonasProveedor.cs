@@ -1,8 +1,10 @@
-﻿using Scripts.GamePlay.Presentacion;
-using Scripts.GamePlay.Infraestructura;
-using Scripts.GamePlay.Dominio;
+﻿using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion.Personas;
+using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
 
-namespace Scripts.GamePlay.Proveedor
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
 {
     public static class PersonasProveedor
     {

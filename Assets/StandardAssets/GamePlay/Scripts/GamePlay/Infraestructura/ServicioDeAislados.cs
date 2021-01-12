@@ -1,8 +1,7 @@
-﻿using Scripts.GamePlay.Vistas;
-using System;
-using Scripts.GamePlay.Dominio;
+﻿using System;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
 
-namespace Scripts.GamePlay.Infraestructura
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class ServicioDeAislados
     {

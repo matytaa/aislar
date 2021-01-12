@@ -1,18 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using UniRx;
+﻿using System;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
+using StandardAssets.GamePlay.Scripts.GamePlay.Proveedor;
+using StandardAssets.GamePlay.Scripts.GamePlay.Utils;
+using StandardAssets.GamePlay.Scripts.GamePlay.Vistas.Personas;
 using TMPro;
-using System.Globalization;
-using Scripts.GamePlay.Presentacion;
-using Scripts.GamePlay.Proveedor;
-using Scripts.GamePlay.Utils;
-using Scripts.GamePlay.Vistas.Personas;
 using UniRx;
-using Scripts.GamePlay.Dominio;
+using UnityEngine;
 
-namespace Scripts.GamePlay.Vistas
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
 {
     public class UnityGamePlayVista : MonoBehaviour, GamePlayView
     {

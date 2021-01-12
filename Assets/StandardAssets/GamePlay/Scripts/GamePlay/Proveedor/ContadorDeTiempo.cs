@@ -1,8 +1,7 @@
 ﻿using System;
-using UnityEngine;
 using UniRx;
 
-namespace Scripts.GamePlay.Proveedor
+namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
 {
     public static class ContadorDeTiempo
     {

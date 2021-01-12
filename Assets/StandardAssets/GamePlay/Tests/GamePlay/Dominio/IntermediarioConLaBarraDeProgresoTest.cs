@@ -1,12 +1,9 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using System.ComponentModel;
-using System.ComponentModel.Design;
-using Scripts.GamePlay.Presentacion;
-using System;
-using Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
+using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
 
-namespace Tests.GamePlay.Dominio
+namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
 {
     public class IntermediarioConLaBarraDeProgresoTest
     {

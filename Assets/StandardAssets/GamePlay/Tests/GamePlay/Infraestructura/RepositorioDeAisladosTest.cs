@@ -1,11 +1,7 @@
-﻿using NSubstitute;
-using NUnit.Framework;
-using Scripts.GamePlay.Dominio;
-using Scripts.GamePlay.Infraestructura;
-using UniRx;
-using System;
+﻿using NUnit.Framework;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
 
-namespace Tests.GamePlay.Infraestructura
+namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
 {
     public class RepositorioDeAisladosTest
     {
