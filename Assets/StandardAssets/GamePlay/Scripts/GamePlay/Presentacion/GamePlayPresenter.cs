@@ -43,7 +43,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         
         private void MostrarGameOver()
         {
-            vista.MostrarGameOver();
+            vista.MostrarGameOver(servicioDeConfiguracion.EsGanadorDelNivel());
         }
 
         private void PrepararseParaActualizarLaVista()

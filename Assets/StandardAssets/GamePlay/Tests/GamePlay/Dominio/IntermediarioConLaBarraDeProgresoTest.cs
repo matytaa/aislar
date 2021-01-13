@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
 using StandardAssets.GamePlay.Scripts.GamePlay.Presentacion;
+using StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura;
 
 namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
 {
@@ -9,12 +10,14 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
     {
         IntermediarioConLaBarraDeProgreso intermediario;
         BarraDeProgresoVista vista;
+        RepositorioConfiguracion repositorio;
 
         [SetUp]
         public void setup()
         {
             vista = Substitute.For<BarraDeProgresoVista>();
-            intermediario = new IntermediarioConLaBarraDeProgreso(vista);
+            repositorio = Substitute.For<RepositorioConfiguracion>();
+            intermediario = new IntermediarioConLaBarraDeProgreso(vista, repositorio);
         }
 
         [Test]
@@ -23,6 +26,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
             intermediario.DecrementarBarra();
 
             vista.Received(1).DescontarEnLaBarraDeProgreso();
+            repositorio.Received(1).IncrementarCantidadDeContagiados();
         }
     }
 }

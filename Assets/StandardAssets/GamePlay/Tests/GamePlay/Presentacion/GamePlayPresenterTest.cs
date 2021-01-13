@@ -52,17 +52,34 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         [Test]
         public void mostrar_game_over_cuando_el_termina()
         {
+            var esGanador = false;
+            servicio.EsGanadorDelNivel().Returns(esGanador);
+
             vista.OnTimerFinaliza += Raise.Event<Action>();
 
-            vista.Received(1).MostrarGameOver();
+            vista.Received(1).MostrarGameOver(Arg.Is(esGanador));
+        }     
+        
+        [Test]
+        public void mostrar_game_over_win_cuando_el_termina_y_la_cantidad_de_personas_con_covid_es_valida()
+        {
+            var esGanador = true;
+            servicio.EsGanadorDelNivel().Returns(esGanador);
+
+            vista.OnTimerFinaliza += Raise.Event<Action>();
+
+            vista.Received(1).MostrarGameOver(Arg.Is(esGanador));
         }
 
         [Test]
         public void mostrar_game_over_cuando_la_barra_de_progreso_se_haya_agotado()
         {
+            var esGanador = false;
+            servicio.EsGanadorDelNivel().Returns(esGanador);
+
             vista.OnBarraDeProgresoAgotada += Raise.Event<Action>();
 
-            vista.Received(1).MostrarGameOver();
+            vista.Received(1).MostrarGameOver(Arg.Is(esGanador));
         }
 
         [Test]

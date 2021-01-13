@@ -9,7 +9,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         event Action OnTimerFinaliza;
         event Action OnBarraDeProgresoAgotada;
         void IniciarTimer(int tiempoDelNivel);
-        void MostrarGameOver();
+        void MostrarGameOver(bool esGanador);
         void ActualizarCantidadDeAislados(Aislados aislados);
         void ConfigurarLimiteDePersonasConCovid(int limiteDePersonasConCovid);
     }

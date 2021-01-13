@@ -8,6 +8,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
     {
         private ConfiguracionGeneral configuracion;
         private List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
+        private int contadorDeContagiados;
 
         protected RepositorioConfiguracion(){}
         
@@ -15,6 +16,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         {
             this.configuracion = configuracion;
             ClonarListaDeConfiguracionDePersonas();
+            contadorDeContagiados = 0;
         }
 
         public virtual ConfiguracionDePersona DarConfiguracionDeUnaPersona()
@@ -34,6 +36,16 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         public virtual ConfiguracionGeneral DarConfiguracionDelNivel()
         {
             return configuracion;
+        }
+
+        public virtual int DarCantidadDeInfectadosConCovid()
+        {
+            return contadorDeContagiados;
+        }
+
+        public virtual void IncrementarCantidadDeContagiados()
+        {
+            contadorDeContagiados = contadorDeContagiados + 1;
         }
     }
 }

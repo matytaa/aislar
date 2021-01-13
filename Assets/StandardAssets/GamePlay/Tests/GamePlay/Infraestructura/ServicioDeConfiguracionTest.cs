@@ -58,5 +58,33 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
 
             Assert.AreEqual(limiteDePoblacionConCovid, resultado);
         }
+
+        [Test]
+        public void decir_que_el_nivel_es_ganador()
+        {
+            var esGanador = true;
+            repositorio.DarCantidadDeInfectadosConCovid().Returns(3);
+            var limiteDePoblacionConCovid = 10;
+            configuracionGeneral.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+
+            var resultado = servicio.EsGanadorDelNivel();
+
+            Assert.IsTrue(resultado);
+        }
+
+        [Test]
+        public void decir_que_el_nivel_no_es_ganador()
+        {
+            var esGanador = false;
+            repositorio.DarCantidadDeInfectadosConCovid().Returns(10);
+            var limiteDePoblacionConCovid = 10;
+            configuracionGeneral.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+
+            var resultado = servicio.EsGanadorDelNivel();
+
+            Assert.IsFalse(resultado);
+        }
     }
 }

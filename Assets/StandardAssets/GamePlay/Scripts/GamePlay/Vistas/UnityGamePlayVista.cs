@@ -22,6 +22,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] TextMeshProUGUI cantidadDeAislados;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
+        static readonly int gameOverWinTrigger = Animator.StringToHash("game-over-win");
         readonly Disposer suscripcion = Disposer.Create();
         private IObservable<Unit> receptorDeBarraDeProgresoAgotada;
 
@@ -79,9 +80,9 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             barraDeProgreso.ConfigurarLimiteDePersonasConCovid(limiteDePersonasConCovid);
         }
 
-        public void MostrarGameOver()
+        public void MostrarGameOver(bool esGanador)
         {
-            animator.SetTrigger(gameOverTrigger);
+            animator.SetTrigger(esGanador ? gameOverWinTrigger : gameOverTrigger);
         }
         
         public void ActualizarCantidadDeAislados(Aislados aislados)

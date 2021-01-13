@@ -17,9 +17,9 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
         }
 
         public static void CargarConfiguracion(int topeDeAislados,
-            BarraDeProgresoVista barraDeProgreso)
+            BarraDeProgresoVista barraDeProgreso, RepositorioConfiguracion repositorioConfiguracion)
         {
-            intermediario = new IntermediarioConLaBarraDeProgreso(barraDeProgreso);
+            intermediario = new IntermediarioConLaBarraDeProgreso(barraDeProgreso, repositorioConfiguracion);
             repositorioDeAislados = new RepositorioDeAislados(topeDeAislados);
             servicioDeAislados = new ServicioDeAislados(GamePlayProveedor.DarEmisorDeAislados(), repositorioDeAislados);
         }

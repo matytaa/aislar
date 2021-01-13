@@ -18,7 +18,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
             BarraDeProgresoVista barraDeProgreso)
         {
             repositorioConfiguracion = new RepositorioConfiguracion(configuracion);
-            PersonasProveedor.CargarConfiguracion(configuracion.TopeDeAislados(), barraDeProgreso);
+            PersonasProveedor.CargarConfiguracion(configuracion.TopeDeAislados(), barraDeProgreso, repositorioConfiguracion);
             new GamePlayPresenter(vista, DarReceptorDeAislados(), DarServicioDeConfiguracion());
         }
 

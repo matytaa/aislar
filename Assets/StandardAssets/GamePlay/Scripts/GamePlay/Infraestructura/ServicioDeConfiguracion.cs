@@ -27,5 +27,10 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         {
             return repositorioConfiguracion.DarConfiguracionDelNivel().LimiteDePoblacionConCovid();
         }
+        
+        public virtual bool EsGanadorDelNivel()
+        {
+            return repositorioConfiguracion.DarCantidadDeInfectadosConCovid() < DarLimiteDePoblacionConCovid();
+        }
     }
 }
