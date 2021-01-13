@@ -15,7 +15,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] int tiempoTotal;
         [SerializeField] TextMeshProUGUI tiempoRestante;
         [SerializeField] Animator animator;
-        [SerializeField] ConfiguracionGeneral configuracion;
+        [SerializeField] ConfiguracionDelNivel configuracion;
         [SerializeField] UnityPersonaVista prefabPersona;
         [SerializeField] Transform contenedorDeLasPersonas;
         [SerializeField] UnityBarraDeProgresoVista barraDeProgreso;

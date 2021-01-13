@@ -6,13 +6,13 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class RepositorioConfiguracion
     {
-        private ConfiguracionGeneral configuracion;
+        private ConfiguracionDelNivel configuracion;
         private List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
         private int contadorDeContagiados;
 
         protected RepositorioConfiguracion(){}
         
-        public RepositorioConfiguracion(ConfiguracionGeneral configuracion)
+        public RepositorioConfiguracion(ConfiguracionDelNivel configuracion)
         {
             this.configuracion = configuracion;
             ClonarListaDeConfiguracionDePersonas();
@@ -33,7 +33,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
             listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracion.DarConfiguracionesDePersona());
         }
 
-        public virtual ConfiguracionGeneral DarConfiguracionDelNivel()
+        public virtual ConfiguracionDelNivel DarConfiguracionDelNivel()
         {
             return configuracion;
         }

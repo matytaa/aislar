@@ -10,7 +10,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
     {
         ServicioDeConfiguracion servicio;
         RepositorioConfiguracion repositorio;
-        ConfiguracionGeneral configuracionGeneral;
+        ConfiguracionDelNivel _configuracionDelNivel;
         ConfiguracionDePersona configuracionDePersona;
         Persona persona;
 
@@ -19,7 +19,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         {
             repositorio = Substitute.For<RepositorioConfiguracion>();
             servicio = new ServicioDeConfiguracion(repositorio);
-            configuracionGeneral = Substitute.For<ConfiguracionGeneral>();
+            _configuracionDelNivel = Substitute.For<ConfiguracionDelNivel>();
             configuracionDePersona = Substitute.For<ConfiguracionDePersona>();
             persona = Substitute.For<Persona>();
         }
@@ -28,8 +28,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         public void dar_tiempo_del_nivel()
         {
             var tiempoDelNivel = 10;
-            configuracionGeneral.TiempoDelNivel().Returns(tiempoDelNivel);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+            _configuracionDelNivel.TiempoDelNivel().Returns(tiempoDelNivel);
+            repositorio.DarConfiguracionDelNivel().Returns(_configuracionDelNivel);
 
             var resultado = servicio.DarTiempoDelNivel();
 
@@ -51,8 +51,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         public void dar_limite_de_poblacion_con_covid()
         {
             var limiteDePoblacionConCovid = 10;
-            configuracionGeneral.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+            _configuracionDelNivel.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            repositorio.DarConfiguracionDelNivel().Returns(_configuracionDelNivel);
 
             var resultado = servicio.DarLimiteDePoblacionConCovid();
 
@@ -65,8 +65,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             var esGanador = true;
             repositorio.DarCantidadDeInfectadosConCovid().Returns(3);
             var limiteDePoblacionConCovid = 10;
-            configuracionGeneral.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+            _configuracionDelNivel.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            repositorio.DarConfiguracionDelNivel().Returns(_configuracionDelNivel);
 
             var resultado = servicio.EsGanadorDelNivel();
 
@@ -79,8 +79,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             var esGanador = false;
             repositorio.DarCantidadDeInfectadosConCovid().Returns(10);
             var limiteDePoblacionConCovid = 10;
-            configuracionGeneral.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionGeneral);
+            _configuracionDelNivel.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            repositorio.DarConfiguracionDelNivel().Returns(_configuracionDelNivel);
 
             var resultado = servicio.EsGanadorDelNivel();
 

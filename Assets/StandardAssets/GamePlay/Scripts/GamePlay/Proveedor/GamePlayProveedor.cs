@@ -14,7 +14,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
         private static RepositorioConfiguracion repositorioConfiguracion;
 
         public static void AsignarPresenterYSetearConfiguracion(GamePlayView vista, 
-            ConfiguracionGeneral configuracion,
+            ConfiguracionDelNivel configuracion,
             BarraDeProgresoVista barraDeProgreso)
         {
             repositorioConfiguracion = new RepositorioConfiguracion(configuracion);

@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
 {
-    [CreateAssetMenu(fileName = "Configuracion general", menuName = "Aislar/Crear configuracion general")]
-    public class ConfiguracionGeneral : ScriptableObject
+    [CreateAssetMenu(fileName = "Configuracion del nivel", menuName = "Aislar/Crear configuracion del nivel")]
+    public class ConfiguracionDelNivel : ScriptableObject
     {
         [SerializeField] List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
         [SerializeField] int topeDeAislados;
