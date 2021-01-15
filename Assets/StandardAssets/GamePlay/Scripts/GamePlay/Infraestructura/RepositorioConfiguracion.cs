@@ -6,36 +6,28 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class RepositorioConfiguracion
     {
-        private ConfiguracionDelNivel configuracion;
-        private List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
+        private ConfiguracionGeneral configuracion;
+        private ConfiguracionDelNivel configuracionDelNivel;
+
+        private List<ConfiguracionDelNivel> listaDeConfiguracionDeNiveles;
         private int contadorDeContagiados;
+        private int contadorDeNiveles;
 
         protected RepositorioConfiguracion(){}
         
-        public RepositorioConfiguracion(ConfiguracionDelNivel configuracion)
+        public RepositorioConfiguracion(ConfiguracionGeneral configuracion)
         {
             this.configuracion = configuracion;
-            ClonarListaDeConfiguracionDePersonas();
+            listaDeConfiguracionDeNiveles = new List<ConfiguracionDelNivel>(configuracion.DarConfiguracionDeNiveles());
             contadorDeContagiados = 0;
-        }
-
-        public virtual ConfiguracionDePersona DarConfiguracionDeUnaPersona()
-        {
-            if(listaDeConfiguracionDePersonas.Count() == 0)
-                ClonarListaDeConfiguracionDePersonas();
-                
-            var configuracionDePersona = listaDeConfiguracionDePersonas.First();
-            listaDeConfiguracionDePersonas.RemoveAt(0);
-            return configuracionDePersona;
-        }
-
-        private void ClonarListaDeConfiguracionDePersonas(){
-            listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracion.DarConfiguracionesDePersona());
+            contadorDeNiveles = 0;
         }
 
         public virtual ConfiguracionDelNivel DarConfiguracionDelNivel()
         {
-            return configuracion;
+            configuracionDelNivel = listaDeConfiguracionDeNiveles[contadorDeNiveles];
+            contadorDeNiveles = contadorDeNiveles + 1;
+            return configuracionDelNivel;
         }
 
         public virtual int DarCantidadDeInfectadosConCovid()
@@ -46,6 +38,16 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         public virtual void IncrementarCantidadDeContagiados()
         {
             contadorDeContagiados = contadorDeContagiados + 1;
+        }
+        
+        public virtual int TotalDeNiveles()
+        {
+            return listaDeConfiguracionDeNiveles.Count;
+        }
+        
+        public virtual int NumeroDeNivelActual()
+        {
+            return contadorDeNiveles;
         }
     }
 }

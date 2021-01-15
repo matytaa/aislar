@@ -34,8 +34,9 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         {
             servicio.DarTiempoDelNivel().Returns(tiempoDelNivel);
             
-            vista.OnVistaHabilitada += Raise.Event<Action>();
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
+            servicio.Received(1).DarNivelActual();
             vista.Received(1).IniciarTimer(Arg.Is(tiempoDelNivel));
         }
         
@@ -44,7 +45,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         {
             servicio.DarLimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
             
-            vista.OnVistaHabilitada += Raise.Event<Action>();
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
             vista.Received(1).ConfigurarLimiteDePersonasConCovid(Arg.Is(limiteDePoblacionConCovid));
         }
@@ -98,6 +99,72 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             aisladosSubject.OnNext(aislados);
 
             vista.DidNotReceive().ActualizarCantidadDeAislados(Arg.Is(aislados));
+        }
+
+        [Test]
+        public void iniciar_juego_al_hacer_click_en_boton_start()
+        {
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
+
+            servicio.Received(1).DarNivelActual();
+            vista.Received(1).ApagarOPrenderPanelDeBotones(prendido: false);
+        }
+
+        [Test]
+        public void instanciar_personas_al_hacer_click_en_boton_start()
+        {
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
+
+            vista.Received(1).InstanciarPersonas();
+        }
+
+        [Test]
+        public void al_habilitar_la_vista_mostrar_panel_de_inciar_juego()
+        {
+            vista.OnVistaHabilitada += Raise.Event<Action>();
+
+            vista.Received(1).ApagarOPrenderPanelDeBotones(prendido: true);
+        }
+        
+        [Test]
+        public void mostrar_boton_next_level_siempre_que_haya_uno_disponible_cuando_termina_el_tiempo()
+        {
+            servicio.HayUnSiguienteNivel().Returns(true);
+            servicio.EsGanadorDelNivel().Returns(true);
+
+            vista.OnTimerFinaliza += Raise.Event<Action>();
+
+            vista.Received(1).ApagarOPrenderBotonNextLevel(prendido:true);
+        }
+                
+        [Test]
+        public void dejar_de_instanciar_personas_cuando_termina_el_tiempo()
+        {
+            servicio.HayUnSiguienteNivel().Returns(true);
+            servicio.EsGanadorDelNivel().Returns(true);
+
+            vista.OnTimerFinaliza += Raise.Event<Action>();
+
+            vista.Received(1).DejarDeInstanciarPersonas();
+        }
+        
+        [Test]
+        public void no_mostrar_boton_next_level_porque_estamos_en_el_ultimo_nivel_cuando_termina_el_tiempo()
+        {
+            servicio.HayUnSiguienteNivel().Returns(false);
+            servicio.EsGanadorDelNivel().Returns(true);
+
+            vista.OnTimerFinaliza += Raise.Event<Action>();
+
+            vista.DidNotReceive().ApagarOPrenderBotonNextLevel(prendido: false);
+        }
+
+        [Test]
+        public void al_hacer_click_en_next_level_iniciar_otro_nivel()
+        {
+            vista.OnBotonNextLevelEsClickeado += Raise.Event<Action>();
+
+            vista.Received(1).ApagarOPrenderBotonNextLevel(prendido: false);
         }
     }
 }

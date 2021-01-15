@@ -10,14 +10,14 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
     {
         IntermediarioConLaBarraDeProgreso intermediario;
         BarraDeProgresoVista vista;
-        RepositorioConfiguracion repositorio;
+        ServicioDeConfiguracion servicio;
 
         [SetUp]
         public void setup()
         {
             vista = Substitute.For<BarraDeProgresoVista>();
-            repositorio = Substitute.For<RepositorioConfiguracion>();
-            intermediario = new IntermediarioConLaBarraDeProgreso(vista, repositorio);
+            servicio = Substitute.For<ServicioDeConfiguracion>();
+            intermediario = new IntermediarioConLaBarraDeProgreso(vista, servicio);
         }
 
         [Test]
@@ -26,7 +26,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Dominio
             intermediario.DecrementarBarra();
 
             vista.Received(1).DescontarEnLaBarraDeProgreso();
-            repositorio.Received(1).IncrementarCantidadDeContagiados();
+            servicio.Received(1).IncrementarCantidadDeContagiados();
         }
     }
 }

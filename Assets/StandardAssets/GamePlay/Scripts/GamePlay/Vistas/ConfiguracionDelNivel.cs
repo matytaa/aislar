@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
@@ -11,7 +11,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] int tiempoDelNivel;
         [SerializeField] int limiteDePoblacionConCovid;
 
-        public List<ConfiguracionDePersona> DarConfiguracionesDePersona()
+        public virtual List<ConfiguracionDePersona> DarConfiguracionesDePersona()
         {
             return listaDeConfiguracionDePersonas;
         }

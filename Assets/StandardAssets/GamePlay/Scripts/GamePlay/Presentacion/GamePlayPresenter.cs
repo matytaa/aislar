@@ -18,15 +18,26 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
             this.vista = vista;
             this.aislados = aislados;
             this.servicioDeConfiguracion = servicioDeConfiguracion;
-            this.vista.OnVistaHabilitada += ConfigurarNivel;
+            this.vista.OnVistaHabilitada += MostrarPanelDeIniciarJuego;
+            this.vista.OnBotonStartEsClickeado += IniciarNivel;
+            this.vista.OnBotonNextLevelEsClickeado += IniciarNivel;
             this.vista.OnTimerFinaliza += MostrarGameOver;
             this.vista.OnBarraDeProgresoAgotada += MostrarGameOver;
 
             PrepararseParaActualizarLaVista();
         }
 
-        private void ConfigurarNivel()
+        private void MostrarPanelDeIniciarJuego()
         {
+            vista.ApagarOPrenderPanelDeBotones(true);
+        }
+        
+        private void IniciarNivel()
+        {
+            servicioDeConfiguracion.DarNivelActual();
+            vista.ApagarOPrenderPanelDeBotones(false);
+            vista.ApagarOPrenderBotonNextLevel(false);
+            vista.InstanciarPersonas();
             ConfigurarLimiteDePersonasConCovid();
             IniciarTimer();
         }
@@ -43,7 +54,12 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         
         private void MostrarGameOver()
         {
-            vista.MostrarGameOver(servicioDeConfiguracion.EsGanadorDelNivel());
+            vista.DejarDeInstanciarPersonas();
+            var esGanador = servicioDeConfiguracion.EsGanadorDelNivel();
+            var hayUnSiguienteNivel = servicioDeConfiguracion.HayUnSiguienteNivel();
+            vista.MostrarGameOver(esGanador);
+            if (esGanador && hayUnSiguienteNivel)
+                vista.ApagarOPrenderBotonNextLevel(true);
         }
 
         private void PrepararseParaActualizarLaVista()

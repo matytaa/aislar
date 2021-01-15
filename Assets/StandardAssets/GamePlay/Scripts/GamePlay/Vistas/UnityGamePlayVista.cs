@@ -7,6 +7,7 @@ using StandardAssets.GamePlay.Scripts.GamePlay.Vistas.Personas;
 using TMPro;
 using UniRx;
 using UnityEngine;
+using Button = UnityEngine.UI.Button;
 
 namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
 {
@@ -15,11 +16,13 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] int tiempoTotal;
         [SerializeField] TextMeshProUGUI tiempoRestante;
         [SerializeField] Animator animator;
-        [SerializeField] ConfiguracionDelNivel configuracion;
         [SerializeField] UnityPersonaVista prefabPersona;
         [SerializeField] Transform contenedorDeLasPersonas;
         [SerializeField] UnityBarraDeProgresoVista barraDeProgreso;
         [SerializeField] TextMeshProUGUI cantidadDeAislados;
+        [SerializeField] GameObject panelDeBotones;
+        [SerializeField] Button botonStart;
+        [SerializeField] Button botonNextLevel;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         static readonly int gameOverWinTrigger = Animator.StringToHash("game-over-win");
@@ -29,14 +32,17 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         public event Action OnVistaHabilitada = () => { };
         public event Action OnTimerFinaliza = () => { };
         public event Action OnBarraDeProgresoAgotada = () => { };
+        public event Action OnBotonStartEsClickeado = () => { };
+        public event Action OnBotonNextLevelEsClickeado = () => { };
 
         void Awake()
         {
-            GamePlayProveedor.AsignarPresenterYSetearConfiguracion(this, configuracion, barraDeProgreso);
-            InstanciarPersona();
+            GamePlayProveedor.AsignarPresenterYSetearConfiguracion(this, barraDeProgreso);
             receptorDeBarraDeProgresoAgotada = GamePlayProveedor.DarReceptorDeBarraDeProgresoAgotada();
             receptorDeBarraDeProgresoAgotada.Subscribe(_ => OnBarraDeProgresoAgotada())
                 .AddTo(suscripcion);
+            botonStart.onClick.AddListener(IniciarNivel);
+            botonNextLevel.onClick.AddListener(IniciarOtroNivel);
         }
 
         void OnEnable()
@@ -44,7 +50,17 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             OnVistaHabilitada();
         }
 
-        void InstanciarPersona()
+        void IniciarNivel()
+        {
+            OnBotonStartEsClickeado();
+        }
+        
+        void IniciarOtroNivel()
+        {
+            OnBotonNextLevelEsClickeado();
+        }
+
+        public void InstanciarPersonas()
         {
             var poolDePersonas = new PoolDePersonas(prefabPersona, contenedorDeLasPersonas);
             Observable.Interval(TimeSpan.FromSeconds(1))
@@ -60,6 +76,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
                 }
                 )
                 .AddTo(suscripcion);
+        }
+
+        public void DejarDeInstanciarPersonas()
+        {
+            suscripcion.Dispose();
         }
 
         void OnDisable()
@@ -88,6 +109,17 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         public void ActualizarCantidadDeAislados(Aislados aislados)
         {
             cantidadDeAislados.text = aislados.CantidadActualDeAislados() + "/" + aislados.TopeDeAislados();
+        }
+
+        public void ApagarOPrenderPanelDeBotones(bool prendido)
+        {
+            panelDeBotones.SetActive(prendido);
+        }
+
+        public void ApagarOPrenderBotonNextLevel(bool prendido)
+        {
+            panelDeBotones.SetActive(prendido);
+            botonNextLevel.gameObject.SetActive(prendido);
         }
 
         void ActualizacionDelTimer(int segundosRestantes)
