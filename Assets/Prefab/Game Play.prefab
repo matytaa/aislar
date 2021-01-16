@@ -1066,6 +1066,7 @@ MonoBehaviour:
   panelDeBotones: {fileID: 2038840348997837961}
   botonStart: {fileID: 6632362390510761278}
   botonNextLevel: {fileID: 8627766395193254205}
+  musicaDelJuego: {fileID: 11400000, guid: 2f56772f5ded55d4ea2d8a9e5c6cc153, type: 2}
 --- !u!1 &3407275617255377480
 GameObject:
   m_ObjectHideFlags: 0

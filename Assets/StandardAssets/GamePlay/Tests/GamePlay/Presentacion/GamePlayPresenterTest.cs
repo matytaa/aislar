@@ -30,7 +30,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         }
 
         [Test]
-        public void iniciar_tiempo_cuando_se_habilita_la_vista()
+        public void iniciar_tiempo_cuando_se_hace_click_en_boton_start()
         {
             servicio.DarTiempoDelNivel().Returns(tiempoDelNivel);
             
@@ -38,6 +38,14 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
 
             servicio.Received(1).DarPrimerNivel();
             vista.Received(1).IniciarTimer(Arg.Is(tiempoDelNivel));
+        }
+
+        [Test]
+        public void poner_musica_del_gameplay_cuando_se_hace_click_en_boton_start()
+        { 
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
+
+            vista.Received(1).PlayMusica("gamePlay", true);
         }
         
         [Test]
@@ -95,6 +103,28 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         }
 
         [Test]
+        public void al_perder_musica_del_lobby()
+        {
+            var esGanador = false;
+            servicio.EsGanadorDelNivel().Returns(esGanador);
+
+            vista.OnBarraDeProgresoAgotada += Raise.Event<Action>();
+
+            vista.Received(1).PlayMusica("lobby", true);
+        }
+
+        [Test]
+        public void al_terminar_ultimo_nivel_poner_musica_del_lobby()
+        {
+            servicio.HayUnSiguienteNivel().Returns(false);
+            servicio.EsGanadorDelNivel().Returns(true);
+
+            vista.OnTimerFinaliza += Raise.Event<Action>();
+
+            vista.Received(1).PlayMusica("lobby", true);
+        }
+
+        [Test]
         public void actualizar_cantidad_de_aislados()
         {
             aisladosSubject.OnNext(aislados);
@@ -136,6 +166,14 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             vista.OnVistaHabilitada += Raise.Event<Action>();
 
             vista.Received(1).MostrarPopupDeStartGameONextLevel(false);
+        }
+
+        [Test]
+        public void al_habilitar_la_vista_cargar_musica_del_lobby()
+        {
+            vista.OnVistaHabilitada += Raise.Event<Action>();
+
+            vista.Received(1).PlayMusica("lobby", loop: true);
         }
         
         [Test]

@@ -18,5 +18,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         void InstanciarPersonas(int tiempoDelNivel);
         void ApagarPopUP();
         void DestruirPersonas();
+        void PlayMusica(string key, bool loop);
     }
 }

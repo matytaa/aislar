@@ -271,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   configuracion: {fileID: 11400000, guid: 46d31c4245710f64192ae852f007a4a9, type: 2}
+  musicaDelJuego: {fileID: 11400000, guid: 2f56772f5ded55d4ea2d8a9e5c6cc153, type: 2}
 --- !u!1 &646825946
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,15 +518,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 704276885, guid: b3653f19f139be04e8fe0d487b87c9f9, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 704276885, guid: b3653f19f139be04e8fe0d487b87c9f9, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 704276885, guid: b3653f19f139be04e8fe0d487b87c9f9, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 174612274866265943, guid: b3653f19f139be04e8fe0d487b87c9f9,
         type: 3}

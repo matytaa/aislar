@@ -29,6 +29,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
 
         private void MostrarPanelDeIniciarJuego()
         {
+            vista.PlayMusica("lobby", true);
             vista.MostrarPopupDeStartGameONextLevel(false);
         }
 
@@ -38,7 +39,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
             IniciarNivel();
         }
 
-
         private void IniciarOtroNivel()
         {
             servicioDeConfiguracion.DarNivelActual();
@@ -47,6 +47,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
 
         private void IniciarNivel()
         {
+            vista.PlayMusica("gamePlay", true);
             vista.ApagarPopUP();
             vista.InstanciarPersonas(servicioDeConfiguracion.DarTiempoDelNivel());
             ConfigurarLimiteDePersonasConCovid();
@@ -70,6 +71,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
             var hayUnSiguienteNivel = servicioDeConfiguracion.HayUnSiguienteNivel();
             vista.MostrarGameOver(esGanador);
             var esGanadorYHayOtroNivel = (esGanador && hayUnSiguienteNivel);
+            if (!esGanadorYHayOtroNivel) vista.PlayMusica("lobby", true);
             vista.MostrarPopupDeStartGameONextLevel(esGanadorYHayOtroNivel);
         }
 

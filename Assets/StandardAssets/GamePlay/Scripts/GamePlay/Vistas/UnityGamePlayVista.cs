@@ -23,6 +23,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] GameObject panelDeBotones;
         [SerializeField] Button botonStart;
         [SerializeField] Button botonNextLevel;
+        [SerializeField] UnityMusicaDelJuego musicaDelJuego;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         static readonly int gameOverWinTrigger = Animator.StringToHash("game-over-win");
@@ -85,6 +86,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             suscripcion.Dispose();
             foreach (Transform persona in contenedorDeLasPersonas)
                 Destroy(persona.gameObject);
+        }
+
+        public void PlayMusica(string key, bool loop)
+        {
+            musicaDelJuego.PlayMusica(key, loop);
         }
 
         void OnDisable()
