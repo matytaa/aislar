@@ -1,6 +1,6 @@
 using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
 using System.Collections.Generic;
-using System.Linq;
+using StandardAssets.GamePlay.Scripts.GamePlay.Dominio;
 
 namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
@@ -8,7 +8,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
     {
         private readonly RepositorioConfiguracion repositorioConfiguracion;
         private List<ConfiguracionDePersona> listaDeConfiguracionDePersonas;
-        private ConfiguracionDelNivel configuracionDeNivelActual;
+        private Nivel nivelActual;
         protected ServicioDeConfiguracion(){}
         
         public ServicioDeConfiguracion(RepositorioConfiguracion repositorioConfiguracion)
@@ -16,53 +16,26 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
             this.repositorioConfiguracion = repositorioConfiguracion;
         }
 
-        public virtual ConfiguracionDelNivel DarNivelActual()
+        public virtual Nivel DarPrimerNivel()
         {
-            configuracionDeNivelActual = repositorioConfiguracion.DarConfiguracionDelNivel();
-            listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracionDeNivelActual.DarConfiguracionesDePersona());
-            return configuracionDeNivelActual;
-        }
-        
-        public virtual ConfiguracionDelNivel DarPrimerNivel()
-        {
-            configuracionDeNivelActual = repositorioConfiguracion.DarPrimerNivel();
-            listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracionDeNivelActual.DarConfiguracionesDePersona());
-            return configuracionDeNivelActual;
+            GenerarNivel(repositorioConfiguracion.DarConfiguracionDelPrimerNivel());
+            return nivelActual;
         }
 
-        public virtual int DarTiempoDelNivel()
+        public virtual Nivel DarSiguienteNivel()
         {
-            return configuracionDeNivelActual.TiempoDelNivel();
+            GenerarNivel(repositorioConfiguracion.DarConfiguracionDelSiguienteNivel());
+            return nivelActual;
         }
 
         public virtual ConfiguracionDePersona DarConfiguracionDeUnaPersona()
         {
-            if (listaDeConfiguracionDePersonas.Count() == 0)
-                ClonarListaDeConfiguracionDePersonas();
-
-            var configuracionDePersona = listaDeConfiguracionDePersonas.First();
-            listaDeConfiguracionDePersonas.RemoveAt(0);
-            return configuracionDePersona;
+            return nivelActual.DarConfiguracionDeUnaPersona();
         }
 
-        private void ClonarListaDeConfiguracionDePersonas()
-        {
-            listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracionDeNivelActual.DarConfiguracionesDePersona());
-        }
-
-        public virtual int DarLimiteDePoblacionConCovid()
-        {
-            return configuracionDeNivelActual.LimiteDePoblacionConCovid();
-        }
-        
         public virtual bool EsGanadorDelNivel()
         {
-            return repositorioConfiguracion.DarCantidadDeInfectadosConCovid() < DarLimiteDePoblacionConCovid();
-        }
-
-        void ObtenerNivel()
-        {
-            configuracionDeNivelActual = repositorioConfiguracion.DarConfiguracionDelNivel();
+            return repositorioConfiguracion.DarCantidadDeInfectadosConCovid() < nivelActual.LimiteDePoblacionConCovid;
         }
 
         public virtual void IncrementarCantidadDeContagiados()
@@ -73,9 +46,15 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         public virtual bool HayUnSiguienteNivel()
         {
 
-            var a = repositorioConfiguracion.TotalDeNiveles();
-            var b = repositorioConfiguracion.NumeroDeNivelActual();
             return repositorioConfiguracion.TotalDeNiveles() > repositorioConfiguracion.NumeroDeNivelActual();
+        }
+
+        private void GenerarNivel(ConfiguracionDelNivel configuracionDeNivel)
+        {
+            nivelActual = new Nivel(configuracionDeNivel.TiempoDelNivel(),
+                configuracionDeNivel.TopeDeAislados(),
+                configuracionDeNivel.LimiteDePoblacionConCovid(),
+                configuracionDeNivel.DarConfiguracionesDePersona());
         }
     }
 }

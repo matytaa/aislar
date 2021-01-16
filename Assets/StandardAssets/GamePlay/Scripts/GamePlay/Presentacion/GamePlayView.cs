@@ -19,5 +19,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         void ApagarPopUP();
         void DestruirPersonas();
         void PlayMusica(string key, bool loop);
+        void ConfigurarTopeDeAislados(int TopeDeAislados);
     }
 }

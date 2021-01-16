@@ -17,6 +17,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         Aislados aislados;
         private int tiempoDelNivel = 10;
         private int limiteDePoblacionConCovid = 10;
+        private int topeDeAislados = 8;
+        Nivel nivelActual;
 
         [SetUp]
         public void setup()
@@ -27,12 +29,14 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             GamePlayPresenter presenter = new GamePlayPresenter(vista, aisladosSubject, servicio);
 
             aislados = Substitute.For<Aislados>();
+            nivelActual = Substitute.For<Nivel>();
         }
 
         [Test]
         public void iniciar_tiempo_cuando_se_hace_click_en_boton_start()
         {
-            servicio.DarTiempoDelNivel().Returns(tiempoDelNivel);
+            nivelActual.TiempoDelNivel.Returns(tiempoDelNivel);
+            servicio.DarPrimerNivel().Returns(nivelActual);
             
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
@@ -51,11 +55,23 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         [Test]
         public void configurar_limite_de_personas_con_covid()
         {
-            servicio.DarLimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
+            nivelActual.LimiteDePoblacionConCovid.Returns(limiteDePoblacionConCovid);
+            servicio.DarPrimerNivel().Returns(nivelActual);
             
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
             vista.Received(1).ConfigurarLimiteDePersonasConCovid(Arg.Is(limiteDePoblacionConCovid));
+        } 
+        
+        [Test]
+        public void configurar_tope_de_aislados()
+        {
+            nivelActual.TopeDeAislados.Returns(topeDeAislados);
+            servicio.DarPrimerNivel().Returns(nivelActual);
+            
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
+
+            vista.Received(1).ConfigurarTopeDeAislados(Arg.Is(topeDeAislados));
         }
         
         [Test]

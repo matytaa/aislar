@@ -23,14 +23,14 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
             contadorDeNiveles = 0;
         }
 
-        public virtual ConfiguracionDelNivel DarPrimerNivel()
+        public virtual ConfiguracionDelNivel DarConfiguracionDelPrimerNivel()
         {
             configuracionDelNivel = listaDeConfiguracionDeNiveles[0];
             contadorDeNiveles = 1;
             return configuracionDelNivel;
         }
         
-        public virtual ConfiguracionDelNivel DarConfiguracionDelNivel()
+        public virtual ConfiguracionDelNivel DarConfiguracionDelSiguienteNivel()
         {
             configuracionDelNivel = listaDeConfiguracionDeNiveles[contadorDeNiveles];
             contadorDeNiveles = contadorDeNiveles + 1;

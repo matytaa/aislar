@@ -35,33 +35,27 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
 
         private void IniciarPrimerNivel()
         {
-            servicioDeConfiguracion.DarPrimerNivel();
-            IniciarNivel();
+            IniciarNivel(servicioDeConfiguracion.DarPrimerNivel());
         }
 
         private void IniciarOtroNivel()
         {
-            servicioDeConfiguracion.DarNivelActual();
-            IniciarNivel();
+            IniciarNivel(servicioDeConfiguracion.DarSiguienteNivel());
         }
 
-        private void IniciarNivel()
+        private void IniciarNivel(Nivel nivel)
         {
             vista.PlayMusica("gamePlay", true);
             vista.ApagarPopUP();
-            vista.InstanciarPersonas(servicioDeConfiguracion.DarTiempoDelNivel());
-            ConfigurarLimiteDePersonasConCovid();
-            IniciarTimer();
+            vista.InstanciarPersonas(nivel.TiempoDelNivel);
+            vista.ConfigurarLimiteDePersonasConCovid(nivel.LimiteDePoblacionConCovid);
+            vista.IniciarTimer(nivel.TiempoDelNivel);
+            vista.ConfigurarTopeDeAislados(nivel.TopeDeAislados);
         }
 
         private void IniciarTimer()
         {
-            vista.IniciarTimer(servicioDeConfiguracion.DarTiempoDelNivel());
-        }
-        
-        private void ConfigurarLimiteDePersonasConCovid()
-        {
-            vista.ConfigurarLimiteDePersonasConCovid(servicioDeConfiguracion.DarLimiteDePoblacionConCovid());
+            
         }
         
         private void MostrarGameOver()

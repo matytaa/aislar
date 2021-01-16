@@ -14,8 +14,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         RepositorioConfiguracion repositorio;
         ConfiguracionDelNivel configuracionDelNivel;
         ConfiguracionDePersona configuracionDePersona;
-        Persona persona;
-
+        
         [SetUp]
         public void setup()
         {
@@ -23,49 +22,21 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             servicio = new ServicioDeConfiguracion(repositorio);
             configuracionDelNivel = Substitute.For<ConfiguracionDelNivel>();
             configuracionDePersona = Substitute.For<ConfiguracionDePersona>();
-            persona = Substitute.For<Persona>();
 
             var listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>();
             listaDeConfiguracionDePersonas.Add(configuracionDePersona);
-            configuracionDelNivel.DarConfiguracionesDePersona().Returns(listaDeConfiguracionDePersonas);
-        }
-
-        [Test]
-        public void dar_tiempo_del_nivel()
-        {
-            var tiempoDelNivel = 10;
-            configuracionDelNivel.TiempoDelNivel().Returns(tiempoDelNivel);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
-            servicio.DarNivelActual();
-
-            var resultado = servicio.DarTiempoDelNivel();
-
-            Assert.AreEqual(tiempoDelNivel, resultado);
+            configuracionDelNivel.DarConfiguracionesDePersona().Returns(listaDeConfiguracionDePersonas);            
         }
 
         [Test]
         public void obtener_una_persona()
         {
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
-            servicio.DarNivelActual();
+            repositorio.DarConfiguracionDelSiguienteNivel().Returns(configuracionDelNivel);
+            servicio.DarSiguienteNivel();
 
             var resultado = servicio.DarConfiguracionDeUnaPersona();
             
             Assert.AreEqual(configuracionDePersona, resultado);
-        }
-        
-        
-        [Test]
-        public void dar_limite_de_poblacion_con_covid()
-        {
-            var limiteDePoblacionConCovid = 10;
-            configuracionDelNivel.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
-            servicio.DarNivelActual();
-
-            var resultado = servicio.DarLimiteDePoblacionConCovid();
-
-            Assert.AreEqual(limiteDePoblacionConCovid, resultado);
         }
 
         [Test]
@@ -75,8 +46,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             repositorio.DarCantidadDeInfectadosConCovid().Returns(3);
             var limiteDePoblacionConCovid = 10;
             configuracionDelNivel.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
-            servicio.DarNivelActual();
+            repositorio.DarConfiguracionDelSiguienteNivel().Returns(configuracionDelNivel);
+            servicio.DarSiguienteNivel();
 
             var resultado = servicio.EsGanadorDelNivel();
 
@@ -90,8 +61,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             repositorio.DarCantidadDeInfectadosConCovid().Returns(10);
             var limiteDePoblacionConCovid = 10;
             configuracionDelNivel.LimiteDePoblacionConCovid().Returns(limiteDePoblacionConCovid);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
-            servicio.DarNivelActual();
+            repositorio.DarConfiguracionDelSiguienteNivel().Returns(configuracionDelNivel);
+            servicio.DarSiguienteNivel();
 
             var resultado = servicio.EsGanadorDelNivel();
 
@@ -99,17 +70,27 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         }
 
         [Test]
-        [Ignore("No se puede mockear un scriptableObject")]
-        public void dar_primer_nivel()
+        public void obtener_primer_nivel()
         {
-            var listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>();
-            listaDeConfiguracionDePersonas.Add(configuracionDePersona);
-            configuracionDelNivel.DarConfiguracionesDePersona().Returns(listaDeConfiguracionDePersonas);
-            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
+            configuracionDelNivel.TiempoDelNivel().Returns(0);
+            configuracionDelNivel.DarConfiguracionesDePersona().Returns(new List<ConfiguracionDePersona>());
+            repositorio.DarConfiguracionDelPrimerNivel().Returns(configuracionDelNivel);
+                
+            var nivel = servicio.DarPrimerNivel();
 
-            servicio.DarPrimerNivel();
+            Assert.AreEqual(0, nivel.TiempoDelNivel);
+        }
+        
+        [Test]
+        public void obtener_otro_nivel()
+        {
+            configuracionDelNivel.TiempoDelNivel().Returns(0);
+            configuracionDelNivel.DarConfiguracionesDePersona().Returns(new List<ConfiguracionDePersona>());
+            repositorio.DarConfiguracionDelSiguienteNivel().Returns(configuracionDelNivel);
+                
+            var nivel = servicio.DarSiguienteNivel();
 
-            repositorio.Received(1).DarPrimerNivel();
+            Assert.AreEqual(0, nivel.TiempoDelNivel);
         }
 
         [Test]

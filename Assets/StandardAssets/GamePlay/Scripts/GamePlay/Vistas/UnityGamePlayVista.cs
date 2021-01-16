@@ -13,7 +13,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
 {
     public class UnityGamePlayVista : MonoBehaviour, GamePlayView
     {
-        [SerializeField] int tiempoTotal;
         [SerializeField] TextMeshProUGUI tiempoRestante;
         [SerializeField] Animator animator;
         [SerializeField] UnityPersonaVista prefabPersona;
@@ -44,21 +43,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
                 .AddTo(suscripcion);
             botonStart.onClick.AddListener(IniciarNivel);
             botonNextLevel.onClick.AddListener(IniciarOtroNivel);
-        }
-
-        void OnEnable()
-        {
-            OnVistaHabilitada();
-        }
-
-        void IniciarNivel()
-        {
-            OnBotonStartEsClickeado();
-        }
-        
-        void IniciarOtroNivel()
-        {
-            OnBotonNextLevelEsClickeado();
         }
 
         public void InstanciarPersonas(int tiempoDelNivel)
@@ -93,11 +77,6 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             musicaDelJuego.PlayMusica(key, loop);
         }
 
-        void OnDisable()
-        {
-            suscripcion.Dispose();
-        }
-
         public void IniciarTimer(int tiempoDelNivel)
         {
             SeconsTimer(tiempoDelNivel)
@@ -115,7 +94,12 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         {
             animator.SetTrigger(esGanador ? gameOverWinTrigger : gameOverTrigger);
         }
-        
+
+        public void ConfigurarTopeDeAislados(int TopeDeAislados)
+        {
+            cantidadDeAislados.text = 0 + "/" + TopeDeAislados;
+        }
+
         public void ActualizarCantidadDeAislados(Aislados aislados)
         {
             cantidadDeAislados.text = aislados.CantidadActualDeAislados() + "/" + aislados.TopeDeAislados();
@@ -131,6 +115,26 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         public void ApagarPopUP()
         {
             panelDeBotones.SetActive(false);
+        }
+
+        void OnEnable()
+        {
+            OnVistaHabilitada();
+        }
+
+        void IniciarNivel()
+        {
+            OnBotonStartEsClickeado();
+        }
+        
+        void IniciarOtroNivel()
+        {
+            OnBotonNextLevelEsClickeado();
+        }
+
+        void OnDisable()
+        {
+            suscripcion.Dispose();
         }
 
         void ActualizacionDelTimer(int segundosRestantes)
