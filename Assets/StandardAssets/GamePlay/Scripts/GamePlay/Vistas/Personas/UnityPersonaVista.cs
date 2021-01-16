@@ -83,7 +83,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas.Personas
         {
             return Observable
                 .Timer(TimeSpan.FromSeconds(7))
-                .Where(timeSpan => timeSpan == 0)
+                .Where(timeSpan => timeSpan == 0 && gameObject.activeSelf)
                 .Do(_ => OnRecorridoTerminado())
                 .AsUnitObservable();
         }

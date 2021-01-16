@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
-using UnityEngine;
 
 namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
@@ -27,6 +26,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         {
             configuracionDelNivel = DarConfiguracionDelNivel(0);
             contadorDeNiveles = 1;
+            contadorDeContagiados = 0;
             return configuracionDelNivel;
         }
         
@@ -34,12 +34,12 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         {
             configuracionDelNivel = DarConfiguracionDelNivel(contadorDeNiveles);
             contadorDeNiveles = contadorDeNiveles + 1;
+            contadorDeContagiados = 0;
             return configuracionDelNivel;
         }
 
         private ConfiguracionDelNivel DarConfiguracionDelNivel(int numeroDeNivel)
         {
-            Debug.Log("Nivel: " + numeroDeNivel);
             return listaDeConfiguracionDeNiveles[numeroDeNivel];
         }
 
