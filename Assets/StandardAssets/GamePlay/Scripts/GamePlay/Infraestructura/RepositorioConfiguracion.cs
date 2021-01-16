@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using StandardAssets.GamePlay.Scripts.GamePlay.Vistas;
+using UnityEngine;
 
 namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
@@ -25,16 +25,22 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 
         public virtual ConfiguracionDelNivel DarConfiguracionDelPrimerNivel()
         {
-            configuracionDelNivel = listaDeConfiguracionDeNiveles[0];
+            configuracionDelNivel = DarConfiguracionDelNivel(0);
             contadorDeNiveles = 1;
             return configuracionDelNivel;
         }
         
         public virtual ConfiguracionDelNivel DarConfiguracionDelSiguienteNivel()
         {
-            configuracionDelNivel = listaDeConfiguracionDeNiveles[contadorDeNiveles];
+            configuracionDelNivel = DarConfiguracionDelNivel(contadorDeNiveles);
             contadorDeNiveles = contadorDeNiveles + 1;
             return configuracionDelNivel;
+        }
+
+        private ConfiguracionDelNivel DarConfiguracionDelNivel(int numeroDeNivel)
+        {
+            Debug.Log("Nivel: " + numeroDeNivel);
+            return listaDeConfiguracionDeNiveles[numeroDeNivel];
         }
 
         public virtual int DarCantidadDeInfectadosConCovid()
