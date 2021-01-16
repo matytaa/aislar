@@ -22,6 +22,13 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
             listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracionDeNivelActual.DarConfiguracionesDePersona());
             return configuracionDeNivelActual;
         }
+        
+        public virtual ConfiguracionDelNivel DarPrimerNivel()
+        {
+            configuracionDeNivelActual = repositorioConfiguracion.DarPrimerNivel();
+            listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>(configuracionDeNivelActual.DarConfiguracionesDePersona());
+            return configuracionDeNivelActual;
+        }
 
         public virtual int DarTiempoDelNivel()
         {

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a142475b8fcd3c84bae3e9e446294c46, type: 3}
+  m_Name: Configuracion del nivel 3
+  m_EditorClassIdentifier: 
+  listaDeConfiguracionDePersonas:
+  - {fileID: 11400000, guid: b4f71d80828d6004b86e6d77d0754c76, type: 2}
+  - {fileID: 11400000, guid: 900fb662c6e081547aa019e5d234d2a6, type: 2}
+  topeDeAislados: 11
+  tiempoDelNivel: 15
+  limiteDePoblacionConCovid: 5

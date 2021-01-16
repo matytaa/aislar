@@ -99,6 +99,20 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         }
 
         [Test]
+        [Ignore("No se puede mockear un scriptableObject")]
+        public void dar_primer_nivel()
+        {
+            var listaDeConfiguracionDePersonas = new List<ConfiguracionDePersona>();
+            listaDeConfiguracionDePersonas.Add(configuracionDePersona);
+            configuracionDelNivel.DarConfiguracionesDePersona().Returns(listaDeConfiguracionDePersonas);
+            repositorio.DarConfiguracionDelNivel().Returns(configuracionDelNivel);
+
+            servicio.DarPrimerNivel();
+
+            repositorio.Received(1).DarPrimerNivel();
+        }
+
+        [Test]
         public void hay_otro_nivel()
         {
             repositorio.TotalDeNiveles().Returns(5);

@@ -36,7 +36,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
-            servicio.Received(1).DarNivelActual();
+            servicio.Received(1).DarPrimerNivel();
             vista.Received(1).IniciarTimer(Arg.Is(tiempoDelNivel));
         }
         
@@ -59,6 +59,17 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             vista.OnTimerFinaliza += Raise.Event<Action>();
 
             vista.Received(1).MostrarGameOver(Arg.Is(esGanador));
+        }  
+        
+        [Test]
+        public void destruir_personas_cuando_el_termina()
+        {
+            var esGanador = false;
+            servicio.EsGanadorDelNivel().Returns(esGanador);
+
+            vista.OnTimerFinaliza += Raise.Event<Action>();
+
+            vista.Received(1).DestruirPersonas();
         }     
         
         [Test]
@@ -106,8 +117,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         {
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
-            servicio.Received(1).DarNivelActual();
-            vista.Received(1).ApagarOPrenderPanelDeBotones(prendido: false);
+            servicio.Received(1).DarPrimerNivel();
+            vista.Received(1).ApagarPopUP();
         }
 
         [Test]
@@ -115,7 +126,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         {
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
-            vista.Received(1).InstanciarPersonas();
+            servicio.Received(1).DarPrimerNivel();
+            vista.Received(1).InstanciarPersonas(Arg.Any<int>());
         }
 
         [Test]
@@ -123,7 +135,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         {
             vista.OnVistaHabilitada += Raise.Event<Action>();
 
-            vista.Received(1).ApagarOPrenderPanelDeBotones(prendido: true);
+            vista.Received(1).MostrarPopupDeStartGameONextLevel(false);
         }
         
         [Test]
@@ -134,18 +146,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
 
             vista.OnTimerFinaliza += Raise.Event<Action>();
 
-            vista.Received(1).ApagarOPrenderBotonNextLevel(prendido:true);
-        }
-                
-        [Test]
-        public void dejar_de_instanciar_personas_cuando_termina_el_tiempo()
-        {
-            servicio.HayUnSiguienteNivel().Returns(true);
-            servicio.EsGanadorDelNivel().Returns(true);
-
-            vista.OnTimerFinaliza += Raise.Event<Action>();
-
-            vista.Received(1).DejarDeInstanciarPersonas();
+            vista.Received(1).MostrarPopupDeStartGameONextLevel(esGanadorYHayOtroNivel: true);
         }
         
         [Test]
@@ -156,7 +157,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
 
             vista.OnTimerFinaliza += Raise.Event<Action>();
 
-            vista.DidNotReceive().ApagarOPrenderBotonNextLevel(prendido: false);
+            vista.Received(1).MostrarPopupDeStartGameONextLevel(false);
         }
 
         [Test]
@@ -164,7 +165,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         {
             vista.OnBotonNextLevelEsClickeado += Raise.Event<Action>();
 
-            vista.Received(1).ApagarOPrenderBotonNextLevel(prendido: false);
+            vista.Received(1).ApagarPopUP();
         }
     }
 }

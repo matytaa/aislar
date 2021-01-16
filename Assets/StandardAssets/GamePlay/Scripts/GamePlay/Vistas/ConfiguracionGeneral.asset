@@ -15,3 +15,4 @@ MonoBehaviour:
   listaDeConfiguracionDeNiveles:
   - {fileID: 11400000, guid: c10eecc7adb732740a48f606bf24c9c9, type: 2}
   - {fileID: 11400000, guid: 80f67654b550b264c94727ae0ae7ea2c, type: 2}
+  - {fileID: 11400000, guid: 84c0e5d598c75764682c4f099aacf00a, type: 2}

@@ -60,10 +60,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             OnBotonNextLevelEsClickeado();
         }
 
-        public void InstanciarPersonas()
+        public void InstanciarPersonas(int tiempoDelNivel)
         {
             var poolDePersonas = new PoolDePersonas(prefabPersona, contenedorDeLasPersonas);
             Observable.Interval(TimeSpan.FromSeconds(1))
+                .Where(timeSpan => timeSpan < tiempoDelNivel )
                 .Subscribe(_ =>
                 {
                     var cuantosObjectosQuieroPrecargadosOsiosos = 10;
@@ -72,15 +73,18 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
                         .Do(__ => persona = poolDePersonas.Rent())
                         .Do(__ => persona.transform.localScale = new Vector3(1, 1, 1))
                         .SelectMany(__ => persona.AccionAsincronicaQueDefineLaVidaDeLaPersona())
-                        .Subscribe(__ => poolDePersonas.Return(persona));
+                        .Subscribe(__ => poolDePersonas.Return(persona))
+                        .AddTo(suscripcion);
                 }
                 )
                 .AddTo(suscripcion);
         }
 
-        public void DejarDeInstanciarPersonas()
+        public void DestruirPersonas()
         {
             suscripcion.Dispose();
+            foreach (Transform persona in contenedorDeLasPersonas)
+                Destroy(persona.gameObject);
         }
 
         void OnDisable()
@@ -111,15 +115,16 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             cantidadDeAislados.text = aislados.CantidadActualDeAislados() + "/" + aislados.TopeDeAislados();
         }
 
-        public void ApagarOPrenderPanelDeBotones(bool prendido)
+        public void MostrarPopupDeStartGameONextLevel(bool esGanadorYHayOtroNivel)
         {
-            panelDeBotones.SetActive(prendido);
+            panelDeBotones.SetActive(true);
+            botonNextLevel.gameObject.SetActive(esGanadorYHayOtroNivel);
+            botonStart.gameObject.SetActive(!esGanadorYHayOtroNivel);
         }
 
-        public void ApagarOPrenderBotonNextLevel(bool prendido)
+        public void ApagarPopUP()
         {
-            panelDeBotones.SetActive(prendido);
-            botonNextLevel.gameObject.SetActive(prendido);
+            panelDeBotones.SetActive(false);
         }
 
         void ActualizacionDelTimer(int segundosRestantes)

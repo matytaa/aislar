@@ -19,8 +19,8 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
             this.aislados = aislados;
             this.servicioDeConfiguracion = servicioDeConfiguracion;
             this.vista.OnVistaHabilitada += MostrarPanelDeIniciarJuego;
-            this.vista.OnBotonStartEsClickeado += IniciarNivel;
-            this.vista.OnBotonNextLevelEsClickeado += IniciarNivel;
+            this.vista.OnBotonStartEsClickeado += IniciarPrimerNivel;
+            this.vista.OnBotonNextLevelEsClickeado += IniciarOtroNivel;
             this.vista.OnTimerFinaliza += MostrarGameOver;
             this.vista.OnBarraDeProgresoAgotada += MostrarGameOver;
 
@@ -29,15 +29,26 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
 
         private void MostrarPanelDeIniciarJuego()
         {
-            vista.ApagarOPrenderPanelDeBotones(true);
+            vista.MostrarPopupDeStartGameONextLevel(false);
         }
-        
-        private void IniciarNivel()
+
+        private void IniciarPrimerNivel()
+        {
+            servicioDeConfiguracion.DarPrimerNivel();
+            IniciarNivel();
+        }
+
+
+        private void IniciarOtroNivel()
         {
             servicioDeConfiguracion.DarNivelActual();
-            vista.ApagarOPrenderPanelDeBotones(false);
-            vista.ApagarOPrenderBotonNextLevel(false);
-            vista.InstanciarPersonas();
+            IniciarNivel();
+        }
+
+        private void IniciarNivel()
+        {
+            vista.ApagarPopUP();
+            vista.InstanciarPersonas(servicioDeConfiguracion.DarTiempoDelNivel());
             ConfigurarLimiteDePersonasConCovid();
             IniciarTimer();
         }
@@ -54,12 +65,12 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         
         private void MostrarGameOver()
         {
-            vista.DejarDeInstanciarPersonas();
+            vista.DestruirPersonas();
             var esGanador = servicioDeConfiguracion.EsGanadorDelNivel();
             var hayUnSiguienteNivel = servicioDeConfiguracion.HayUnSiguienteNivel();
             vista.MostrarGameOver(esGanador);
-            if (esGanador && hayUnSiguienteNivel)
-                vista.ApagarOPrenderBotonNextLevel(true);
+            var esGanadorYHayOtroNivel = (esGanador && hayUnSiguienteNivel);
+            vista.MostrarPopupDeStartGameONextLevel(esGanadorYHayOtroNivel);
         }
 
         private void PrepararseParaActualizarLaVista()

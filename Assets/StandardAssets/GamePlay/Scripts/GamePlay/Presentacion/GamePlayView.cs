@@ -14,9 +14,9 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         void MostrarGameOver(bool esGanador);
         void ActualizarCantidadDeAislados(Aislados aislados);
         void ConfigurarLimiteDePersonasConCovid(int limiteDePersonasConCovid);
-        void ApagarOPrenderPanelDeBotones(bool prendido);
-        void InstanciarPersonas();
-        void DejarDeInstanciarPersonas();
-        void ApagarOPrenderBotonNextLevel(bool prendido);
+        void MostrarPopupDeStartGameONextLevel(bool esGanadorYHayOtroNivel);
+        void InstanciarPersonas(int tiempoDelNivel);
+        void ApagarPopUP();
+        void DestruirPersonas();
     }
 }

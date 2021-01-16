@@ -33,6 +33,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         {
             barraDeProgreso.maxValue = limiteDePersonasConCovid;
             barraDeProgreso.value = limiteDePersonasConCovid;
+            colorDeLaBarra.color = gradiente.Evaluate(1f);
         }
     }
 }
