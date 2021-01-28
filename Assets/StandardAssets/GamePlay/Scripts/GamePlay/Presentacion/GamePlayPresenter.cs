@@ -10,14 +10,17 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         readonly GamePlayView vista;
         readonly IObservable<Aislados> aislados;
         readonly ServicioDeConfiguracion servicioDeConfiguracion;
+        readonly ServicioDeAislados servicioDeAislados;
 
         public GamePlayPresenter(GamePlayView vista, 
             IObservable<Aislados> aislados, 
-            ServicioDeConfiguracion servicioDeConfiguracion)
+            ServicioDeConfiguracion servicioDeConfiguracion,
+            ServicioDeAislados servicioDeAislados)
         {
             this.vista = vista;
             this.aislados = aislados;
             this.servicioDeConfiguracion = servicioDeConfiguracion;
+            this.servicioDeAislados = servicioDeAislados;
             this.vista.OnVistaHabilitada += MostrarPanelDeIniciarJuego;
             this.vista.OnBotonStartEsClickeado += IniciarPrimerNivel;
             this.vista.OnBotonNextLevelEsClickeado += IniciarOtroNivel;
@@ -46,6 +49,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         private void IniciarNivel(Nivel nivel)
         {
             vista.PlayMusica("gamePlay", true);
+            servicioDeAislados.ReiniciarCuentaDeAislados();
             vista.ApagarPopUP();
             vista.InstanciarPersonas(nivel.TiempoDelNivel);
             vista.ConfigurarLimiteDePersonasConCovid(nivel.LimiteDePoblacionConCovid);

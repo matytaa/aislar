@@ -14,6 +14,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
         GamePlayPresenter presenter;
         Subject<Aislados> aisladosSubject;
         ServicioDeConfiguracion servicio;
+        ServicioDeAislados servicioDeAislados;
         Aislados aislados;
         private int tiempoDelNivel = 10;
         private int limiteDePoblacionConCovid = 10;
@@ -26,7 +27,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             vista = Substitute.For<GamePlayView>();
             aisladosSubject = new Subject<Aislados>();
             servicio = Substitute.For<ServicioDeConfiguracion>();
-            GamePlayPresenter presenter = new GamePlayPresenter(vista, aisladosSubject, servicio);
+            servicioDeAislados = Substitute.For<ServicioDeAislados>();
+            GamePlayPresenter presenter = new GamePlayPresenter(vista, aisladosSubject, servicio, servicioDeAislados);
 
             aislados = Substitute.For<Aislados>();
             nivelActual = Substitute.For<Nivel>();
@@ -50,6 +52,22 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
             vista.Received(1).PlayMusica("gamePlay", true);
+        }
+
+        [Test]
+        public void reiniciar_cuenta_de_aislados_al_iniciar_primer_nivel()
+        { 
+            vista.OnBotonStartEsClickeado += Raise.Event<Action>();
+
+            servicioDeAislados.Received(1).ReiniciarCuentaDeAislados();
+        }
+        
+        [Test]
+        public void reiniciar_cuenta_de_aislados_al_iniciar_otro_nivel()
+        { 
+            vista.OnBotonNextLevelEsClickeado += Raise.Event<Action>();
+
+            servicioDeAislados.Received(1).ReiniciarCuentaDeAislados();
         }
         
         [Test]

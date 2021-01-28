@@ -18,8 +18,30 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 
         public virtual void ActualizarAislados() 
         {
-            var aislados = repositorio.DarAisladosActualizados();
-            emisorDeAislados.OnNext(aislados);
+            if (EsPosibleAislarMasPersonas()) { 
+                repositorio.ActualizarCantidadAislados();
+                emisorDeAislados.OnNext(new Aislados(CantidadActualDeAislados(), TopeDeAislados()));
+            }
+        }
+
+        public virtual bool EsPosibleAislarMasPersonas()
+        {
+            return CantidadActualDeAislados() < TopeDeAislados();
+        }
+        
+        public virtual void ReiniciarCuentaDeAislados()
+        {
+            repositorio.ReiniciarCuentaDeAislados();
+        }
+
+        private int CantidadActualDeAislados()
+        {
+            return repositorio.CantidadActualDeAislados();
+        }
+        
+        private int TopeDeAislados()
+        {
+            return repositorio.TopeDeAislados();
         }
     }
 }

@@ -29,7 +29,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
             return new ObtenerPersonaAction(GamePlayProveedor.DarServicioDeConfiguracion());
         }
 
-        static ServicioDeAislados DarServicioDeAislados()
+        public static ServicioDeAislados DarServicioDeAislados()
         {
             return servicioDeAislados;
         }

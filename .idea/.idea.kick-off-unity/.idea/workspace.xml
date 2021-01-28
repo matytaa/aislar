@@ -16,25 +16,30 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Dominio/Carril.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Tests/GamePlay/Infraestructura/ServicioDeConfiguracionTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Dominio/Aislados.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/packages.config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Proveedor/GamePlayProveedor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Presentacion/GamePlayPresenter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Presentacion/GamePlayView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/AislarModulo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/ConfiguracionGeneral.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Infraestructura/RepositorioConfiguracion.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/Configuracion del nivel 2.asset.meta" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Tests/GamePlay/Infraestructura/ServicioDeConfiguracionTest.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/ConfiguracionGeneral.asset.meta" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/packages.config" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/UnityGamePlayVista.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Proveedor/GamePlayProveedor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Tests/Tests.asmdef" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/UnityBarraDeProgresoVista.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/SimpleInput/Editor/AxisInputDrawer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefab/Game Play.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Tests/GamePlay/SimpleTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/ConfiguracionDelNivel.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/AislarScene.unity" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/AislarModulo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/ConfiguracionDelNivel.cs.meta" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Scripts/GamePlay/Vistas/Configuracion del nivel.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StandardAssets/GamePlay/Tests/GamePlay/Dominio/IntermediarioConLaBarraDeProgresoTest.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
@@ -92,10 +97,10 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="481" y="148" key="MultipleFileMergeDialog/0.0.1536.864@0.0.1536.864" timestamp="1610771519850" />
-    <state x="572" y="143" key="RollbackChangesDialog" timestamp="1610771343554">
+    <state x="572" y="143" key="RollbackChangesDialog" timestamp="1611794520441">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
-    <state x="572" y="143" key="RollbackChangesDialog/0.0.1536.864@0.0.1536.864" timestamp="1610771343554" />
+    <state x="572" y="143" key="RollbackChangesDialog/0.0.1536.864@0.0.1536.864" timestamp="1611794520441" />
     <state x="461" y="191" key="Vcs.Multiple.Commit.Info.Dialog.Key" timestamp="1610771421483">
       <screen x="0" y="0" width="1536" height="864" />
     </state>

@@ -53,9 +53,21 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion.Personas
         [Test]
         public void habilitar_boton_aislar()
         {
+            servicio.EsPosibleAislarMasPersonas().Returns(true);
+
             vista.OnDarTemperatura += Raise.Event<Action>();
 
             vista.Received(1).HabilitarBotonAislar();
+        }        
+        
+        [Test]
+        public void no_habilitar_boton_aislar()
+        {
+            servicio.EsPosibleAislarMasPersonas().Returns(false);
+
+            vista.OnDarTemperatura += Raise.Event<Action>();
+
+            vista.DidNotReceive().HabilitarBotonAislar();
         }
         
         [Test]

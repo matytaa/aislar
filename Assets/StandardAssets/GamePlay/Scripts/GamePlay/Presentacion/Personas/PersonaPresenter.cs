@@ -38,8 +38,9 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion.Personas
         
         void HabilitarBotonAislarYDarTemperatura()
         {
-            vista.HabilitarBotonAislar();
             vista.DarTemperatura(persona.Temperatura());
+            if (servicio.EsPosibleAislarMasPersonas())
+                vista.HabilitarBotonAislar();
         }      
         
         void OnBotonAislarEsClikeado()

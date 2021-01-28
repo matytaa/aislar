@@ -18,7 +18,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Proveedor
             BarraDeProgresoVista barraDeProgreso)
         {
             PersonasProveedor.CargarConfiguracion(10, barraDeProgreso);
-            new GamePlayPresenter(vista, DarReceptorDeAislados(), DarServicioDeConfiguracion());
+            new GamePlayPresenter(vista, DarReceptorDeAislados(), DarServicioDeConfiguracion(), PersonasProveedor.DarServicioDeAislados());
         }
 
         public static ServicioDeConfiguracion DarServicioDeConfiguracion()

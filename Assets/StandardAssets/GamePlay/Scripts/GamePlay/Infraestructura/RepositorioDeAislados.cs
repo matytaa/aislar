@@ -12,12 +12,25 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         public RepositorioDeAislados(int topeDeAislados)
         {
             this.topeDeAislados = topeDeAislados;
-            acumuladoDeAislados = 0;
         }
 
-        public virtual Aislados DarAisladosActualizados() {
+        public virtual void ActualizarCantidadAislados() {
             acumuladoDeAislados = acumuladoDeAislados + 1;
-            return new Aislados(acumuladoDeAislados, topeDeAislados);
+        }
+
+        public virtual int CantidadActualDeAislados()
+        {
+            return acumuladoDeAislados;
+        }        
+        
+        public virtual int TopeDeAislados()
+        {
+            return topeDeAislados;
+        }
+
+        public virtual void ReiniciarCuentaDeAislados()
+        {
+            acumuladoDeAislados = 0;
         }
     }
 }
