@@ -23,6 +23,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
         [SerializeField] Button botonStart;
         [SerializeField] Button botonNextLevel;
         [SerializeField] UnityMusicaDelJuego musicaDelJuego;
+        [SerializeField] GameObject tutorial;
 
         static readonly int gameOverTrigger = Animator.StringToHash("game-over");
         static readonly int gameOverWinTrigger = Animator.StringToHash("game-over-win");
@@ -110,6 +111,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Vistas
             panelDeBotones.SetActive(true);
             botonNextLevel.gameObject.SetActive(esGanadorYHayOtroNivel);
             botonStart.gameObject.SetActive(!esGanadorYHayOtroNivel);
+            tutorial.SetActive(!esGanadorYHayOtroNivel);
         }
 
         public void ApagarPopUP()

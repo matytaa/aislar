@@ -32,6 +32,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         public virtual void ReiniciarCuentaDeAislados()
         {
             repositorio.ReiniciarCuentaDeAislados();
+        } 
+        
+        public virtual void ConfigurarTopeDeAislados(int topeDeAislados)
+        {
+            repositorio.ConfigurarTopeDeAislados(topeDeAislados);
         }
 
         private int CantidadActualDeAislados()

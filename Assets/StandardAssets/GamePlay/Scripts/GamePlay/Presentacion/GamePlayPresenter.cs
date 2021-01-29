@@ -50,6 +50,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Presentacion
         {
             vista.PlayMusica("gamePlay", true);
             servicioDeAislados.ReiniciarCuentaDeAislados();
+            servicioDeAislados.ConfigurarTopeDeAislados(nivel.TopeDeAislados);
             vista.ApagarPopUP();
             vista.InstanciarPersonas(nivel.TiempoDelNivel);
             vista.ConfigurarLimiteDePersonasConCovid(nivel.LimiteDePoblacionConCovid);

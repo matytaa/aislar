@@ -581,7 +581,7 @@ GameObject:
   - component: {fileID: 1824119802930530882}
   - component: {fileID: 1824119802930530880}
   m_Layer: 5
-  m_Name: Persona
+  m_Name: PersonaTutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -626,10 +626,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1824119802930530885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 854335d83946e8e458205b600b31285f, type: 3}
+  m_Script: {fileID: 11500000, guid: f76ace53d22cfd94194e7b707d3b9b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 3
   botonDarTemperatura: {fileID: 1824119802857261639}
   botonAislar: {fileID: 1824119802155334861}
   panelTemperatura: {fileID: 1824119803622645929}

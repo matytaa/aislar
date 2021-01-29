@@ -90,6 +90,7 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Presentacion
             vista.OnBotonStartEsClickeado += Raise.Event<Action>();
 
             vista.Received(1).ConfigurarTopeDeAislados(Arg.Is(topeDeAislados));
+            servicioDeAislados.Received(1).ConfigurarTopeDeAislados(Arg.Is(topeDeAislados));
         }
         
         [Test]

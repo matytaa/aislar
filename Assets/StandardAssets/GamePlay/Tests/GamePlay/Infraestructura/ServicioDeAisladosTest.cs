@@ -43,6 +43,14 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
         }
 
         [Test]
+        public void configurar_tope_de_aislados()
+        {
+            servicio.ConfigurarTopeDeAislados(10);
+
+            repositorio.Received(1).ConfigurarTopeDeAislados(10);
+        }
+
+        [Test]
         public void emitir_aislados_actualizados()
         {
             repositorio.CantidadActualDeAislados().Returns(1);
@@ -62,7 +70,8 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
             servicio.ActualizarAislados();
 
             emisorDeAislados.Received(1).OnNext(Arg.Any<Aislados>());
-        }  
+        }
+
         [Test]
         public void no_emitir_aislados_actualizados_cuando_is_igual_que_el_tope()
         {

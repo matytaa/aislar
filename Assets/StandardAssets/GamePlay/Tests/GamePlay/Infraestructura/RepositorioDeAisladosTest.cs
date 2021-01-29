@@ -32,5 +32,13 @@ namespace StandardAssets.GamePlay.Tests.GamePlay.Infraestructura
 
             Assert.AreEqual(0, repositorio.CantidadActualDeAislados());
         }
+        
+        [Test]
+        public void configurar_tope_de_aislados()
+        {
+            repositorio.ConfigurarTopeDeAislados(7);
+
+            Assert.AreEqual(7, repositorio.TopeDeAislados());
+        }
     }
 }

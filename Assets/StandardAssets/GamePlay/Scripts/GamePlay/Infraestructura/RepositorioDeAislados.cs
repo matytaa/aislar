@@ -4,7 +4,7 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
 {
     public class RepositorioDeAislados
     {
-        readonly int topeDeAislados;
+        private int topeDeAislados;
         private int acumuladoDeAislados;
 
         protected RepositorioDeAislados() { }
@@ -31,6 +31,11 @@ namespace StandardAssets.GamePlay.Scripts.GamePlay.Infraestructura
         public virtual void ReiniciarCuentaDeAislados()
         {
             acumuladoDeAislados = 0;
+        }
+        
+        public virtual void ConfigurarTopeDeAislados(int topeDeAislados)
+        {
+            this.topeDeAislados = topeDeAislados;
         }
     }
 }
